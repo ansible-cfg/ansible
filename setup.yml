@@ -1,0 +1,9 @@
+---
+- name: 'Postinstall routines on Ubuntu 14.04 playbook'
+  hosts: newservers
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  roles:
+    - postinstall
