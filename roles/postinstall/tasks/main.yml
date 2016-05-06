@@ -5,7 +5,7 @@
 
 - name: Set timezone variables to Europe/Paris
   copy: 
-    content: {{ my_tzone }}
+    content: "{{ my_tzone }}"
     dest: /etc/timezone
     owner: root
     group: root
@@ -22,7 +22,7 @@
 - name: Initial admin user creation - lvi.
   user: 
     name: lvi 
-    password: {{ addusers.config.upassword |password_hash(‘sha512’) }}  
+    password: "{{ addusers.config.upassword |password_hash(‘sha512’) }}"  
     comment: laurent.vincentelli@minsys.io 
     shell: /bin/bash 
     createhome: yes 
@@ -34,7 +34,7 @@
 - name: Initial admin user creation - cso.
   user: 
     name: cso 
-    password: {{ addusers.config.upassword |password_hash(‘sha512’) }}  
+    password: "{{ addusers.config.upassword |password_hash(‘sha512’) }}" 
     comment: cyril.szecsko@zesteinformatique.com 
     shell: /bin/bash 
     createhome: yes 
