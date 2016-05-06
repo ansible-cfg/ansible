@@ -1,11 +1,93 @@
 ---
-- name: Install fail2ban
-  apt: pkg=fail2ban state=installed update-cache=yes
-  register: fail2ban_install
-  tags:
-    - apt
+- name: Check the current time zone 
+  shell: cat /etc/timezone
+  register: current_tzone  
 
-- name: Install config
-  template: src=jail.local.j2 dest=/etc/fail2ban/jail.local
-  notify:
-    - reload fail2ban
+- name: Set timezone variables to Europe/Paris
+  copy: 
+    content: {{my_tzone}}
+    dest: /etc/timezone
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  when: current_tzone.stdout != my_tzone
+  notify: update_timezone
+
+- name: Create the primary group -admins- for leading users.
+  group: 
+    name: admins 
+    state: present
+
+- name: Initial admin user creation - lvi.
+  user: 
+    name: lvi 
+    password: {{ addusers.config.upassword |password_hash(‘sha512’) }}  
+    comment: laurent.vincentelli@minsys.io 
+    shell: /bin/bash 
+    createhome: yes 
+    home: /home/lvi 
+    group: admins 
+    groups: sudo,sshusers
+    append: yes
+
+- name: Initial admin user creation - cso.
+  user: 
+    name: cso 
+    password: {{ addusers.config.upassword |password_hash(‘sha512’) }}  
+    comment: cyril.szecsko@zesteinformatique.com 
+    shell: /bin/bash 
+    createhome: yes 
+    home: /home/cso 
+    group: admins 
+    groups: sudo,sshusers
+    append: yes
+    
+- name: Users lvi & cso will have to change password at first connection.
+  apt: 
+    name: chage 
+    state: present
+  shell: chage -d 0 lvi && chage -d 0 cso
+
+- name: Create .ssh/ directory in lvi home directory  
+  file: 
+    path: /home/lvi/.ssh 
+    state: directory 
+    mode: "u=rw,g=r,o=r"
+
+- name: Create .ssh/ directory in cso home directory  
+  file: 
+    path: /home/cso/.ssh 
+    state: directory 
+    mode: "u=rw,g=r,o=r"
+
+- name: Loading lvi public key in /home/lvi/.ssh 
+  file: 
+    src: lvi_rsa.pub
+    dest: /home/lvi/.ssh/lvi_rsa.pub
+
+- name: Adding the lvi public key to autorized_keys files.  
+  authorized_key: 
+    user: lvi 
+    key: "{{ lookup('file', '/home/lvi/.ssh/lvi_rsa.pub') }}"
+
+- name: Loading cso public key in /home/cso/.ssh  
+  file: 
+    src: cso_rsa.pub
+    dest: /home/cso/.ssh/cso_rsa.pub
+
+- name: Adding the cso public key to autorized_keys files.
+  authorized_key: 
+    user: cso
+    key: "{{ lookup('file', '/home/cso/.ssh/cso_rsa.pub') }}"  
+
+- name: Install fail2ban.
+  apt: 
+    pkg: fail2ban 
+    state: present
+
+- name: Deploy fail2ban config - ssh and ssh-ddos only. 
+  template: 
+    src: jail.local.j2 
+    dest: /etc/fail2ban/jail.local
+  notify: restart_fail2ban

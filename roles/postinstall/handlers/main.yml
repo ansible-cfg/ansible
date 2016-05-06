@@ -1,6 +1,7 @@
 ---
-- name: restart fail2ban
+- name: update_timezone
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+  
+- name: restart_fail2ban
   service: name=fail2ban state=restarted
 
-- name: reload fail2ban
-  service: name=fail2ban state=reloaded

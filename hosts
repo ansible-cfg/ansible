@@ -17,7 +17,7 @@ sensu001.prd.cloud.minsys.io
 frontend001.prd.cloud.minsys.io
 
 [newservers:children]
-lab
+prd
 
 [global:children]
 lab
