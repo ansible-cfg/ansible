@@ -13,8 +13,7 @@ lab01.lab.cloud.minsys.io
 lab02.lab.cloud.minsys.io
 
 [prd]
-sensu001.prd.cloud.minsys.io
-frontend001.prd.cloud.minsys.io
+
 
 [newservers:children]
 lab
