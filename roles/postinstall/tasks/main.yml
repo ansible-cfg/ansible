@@ -44,9 +44,6 @@
     append: yes
     
 - name: Users lvi & cso will have to change password at first connection.
-  apt: 
-    name: chage 
-    state: present
   shell: chage -d 0 lvi && chage -d 0 cso
 
 - name: Create .ssh/ directory in lvi home directory  
