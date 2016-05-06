@@ -5,7 +5,7 @@
 
 - name: Set timezone variables to Europe/Paris
   copy: 
-    content: {{my_tzone}}
+    content: {{ my_tzone }}
     dest: /etc/timezone
     owner: root
     group: root

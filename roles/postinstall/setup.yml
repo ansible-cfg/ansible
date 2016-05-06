@@ -1,7 +1,7 @@
 ---
 
 #Commandline : azerty123 will be the initial password 
-#ansible-playbook setup.yml –extra-vars “password=azerty123 ”
+#ansible-playbook -e “password=azerty123” /etc/ansible/roles/postinstall/setup.yml
 
 - name: 'Postinstall routines on Ubuntu 14.04'
   hosts: newservers
