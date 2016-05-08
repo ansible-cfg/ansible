@@ -3,7 +3,7 @@ my_tzone: 'Europe/Paris'
 
 addusers:
   config:
-    upassword: "{{ password }}" 
+    upassword: {{ password }} 
 
 fail2ban:
   config:
