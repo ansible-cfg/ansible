@@ -1,12 +1,12 @@
 ---
 
-#Commandline : EXAMPLE
-#ansible-playbook -e “password=azerty123” /etc/ansible/roles/postinstall/setup.yml
+#Commandline : 
+#ansible-playbook /etc/ansible/roles/postinstall/setup.yml
 
-- name: 'Name of the ansible-playbook to launch'
+- name: 'Yet another Ansible playbook to install fail2ban with ssh/ssh_ddos jails'
   hosts: 
   become: true
   become_user: root
   become_method: sudo
   roles:
-    - postinstall
+    - fail2ban

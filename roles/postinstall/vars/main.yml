@@ -1,5 +1,6 @@
 ---
-my_tzone: 'Europe/Paris'
+timezone:
+  my_tzone: 'Europe/Paris'
 
 addusers:
   config:

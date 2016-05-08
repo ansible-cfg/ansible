@@ -1,0 +1,12 @@
+---
+
+#Commandline : EXAMPLE
+#ansible-playbook -e “password=azerty123” /etc/ansible/roles/postinstall/setup.yml
+
+- name: 'Name of the ansible-playbook to launch'
+  hosts: 
+  become: true
+  become_user: root
+  become_method: sudo
+  roles:
+    - postinstall
