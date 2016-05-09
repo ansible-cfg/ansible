@@ -5,3 +5,12 @@ fail2ban:
     bantime: 600
     findtime: 600
     maxretry: 3
+    backend: auto
+    usedns: warn
+    destemail: root@localhost
+    sendername: Fail2Ban
+    banaction: iptables-multiport
+    mta: sendmail
+    protocol: tcp
+    chain: INPUT
+

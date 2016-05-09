@@ -4,7 +4,6 @@
 #ansible-playbook /etc/ansible/roles/postinstall/setup.yml
 
 - name: 'Yet another Ansible playbook to install fail2ban with ssh/ssh_ddos jails'
-  hosts: 
   become: true
   become_user: root
   become_method: sudo

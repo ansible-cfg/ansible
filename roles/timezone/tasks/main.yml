@@ -12,4 +12,4 @@
     mode: 0644
     backup: yes
   when: current_tzone.stdout != timezone.my_tzone
-  notify: update_timezone
+  notify: Update_Timezone
