@@ -9,4 +9,4 @@
   become_user: root
   become_method: sudo
   roles:
-    - postinstall
+    - dist_update_upgrade
