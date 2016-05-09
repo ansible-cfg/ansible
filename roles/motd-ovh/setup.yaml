@@ -3,10 +3,9 @@
 #Commandline : EXAMPLE
 #ansible-playbook -e “password=azerty123” /etc/ansible/roles/postinstall/setup.yml
 
-- name: 'Yet another Ansible playbook to initialy update depots and upgrade paquets'
-  hosts: 
+- name: 'Yet another Ansible playbook to set the motd' 
   become: true
   become_user: root
   become_method: sudo
   roles:
-    - dist_update_upgrade
+    - motd-ovh
