@@ -1,0 +1,13 @@
+---
+
+#ansible-playbook -e “password=azerty123” /etc/ansible/roles/hostname-scw/setup.yml
+
+- name: 'Postinstall Routine for Scaleway hosts'
+  hosts: scw_test
+  roles:
+    - dist_update_upgrade
+    - adduser_ansible_scw
+    - 
+    -
+
+#postinstall_scw

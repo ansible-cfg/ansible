@@ -1,0 +1,31 @@
+---
+- name: Create the lvi group
+  group: 
+    name: lvi 
+    state: present
+
+- name: Initial admin user creation - lvi.
+  user: 
+    name: lvi 
+    password: "{{ addusers.upassword }}"   
+    shell: /bin/bash 
+    createhome: yes 
+    home: /home/lvi 
+    groups: lvi,sudo,sshusers
+    append: yes
+
+- name: User lvi will have to change password at first connection.
+  shell: chage -d O lvi
+
+- name: Create .ssh/ directory in lvi home directory  
+  file: 
+    path: /home/lvi/.ssh 
+    state: directory
+    owner: lvi
+    group: lvi  
+    mode: "u=rw,g=rw,o=r"
+
+- name: Adding the lvi public key to authorized_keys files.
+    authorized_key: 
+      user=charlie 
+      key="{{ lookup('file', '/root/.ssh/lvi_rsa.pub') }}"

@@ -1,0 +1,10 @@
+---
+- name: Create the group -admins- for leading users.
+  group: 
+    name: admins 
+    state: present
+
+- name: Create the group -sshusers- for ssh access-granted users.
+  group: 
+    name: sshusers 
+    state: present

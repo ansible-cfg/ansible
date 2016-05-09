@@ -1,0 +1,30 @@
+# SSHD configuration file.
+#
+# !!!----THIS IS AN ANSIBLE MANAGED FILE ----!!!
+#
+# Need help ? Contact : support@minsys.io 
+
+Port {{ sshd.config.port }}
+ListenAddress {{ sshd.config.listenaddress }}
+Protocol {{ sshd.config.vprotocol }}
+HostKey {{ sshd.config.hostkey }}
+UsePrivilegeSeparation {{ sshd.config.useprivseparation }}
+SyslogFacility {{ sshd.config.syslogfacility }}
+LogLevel {{ sshd.config.loglevel }
+LoginGraceTime {{ sshd.config.logingracetime }}
+PermitRootLogin {{ sshd.config.permitrootlogin }}
+StrictModes {{ sshd.config.strictmodes }}
+RSAAuthentication {{ sshd.config.rsaauthentication }}
+PubkeyAuthentication {{ sshd.config.pubkeyauthentication }}
+IgnoreRhosts {{ sshd.config.ignorerhosts }}
+RhostsRSAAuthentication {{ sshd.config.rhostsrsaauthentication }}
+HostbasedAuthentication {{ sshd.config.hostbasedauthentication }}
+PermitEmptyPasswords {{ sshd.config.permitemptypasswords }}
+ChallengeResponseAuthentication {{ sshd.config.challengeresponseauthentication }}
+PrintLastLog {{ sshd.config.printlastlog }}
+TCPKeepAlive {{ sshd.config.tcpkeepalive }}
+UsePAM {{ sshd.config.usepam }}
+AllowGroups {{ sshd.config.allowgroups }}
+
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server

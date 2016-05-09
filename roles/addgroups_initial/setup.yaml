@@ -1,0 +1,4 @@
+---
+
+#Commandline : EXAMPLE
+#ansible-playbook -e “password=azerty123” /etc/ansible/roles/postinstall/setup.yml
