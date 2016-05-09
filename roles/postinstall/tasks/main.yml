@@ -9,25 +9,7 @@
 #5°)Add user cso 
 #6°)Fail2ban 
 
-
-
-
 ---
-- name: Check the current time zone 
-  shell: cat /etc/timezone
-  register: current_tzone  
-
-- name: Set timezone variables to Europe/Paris
-  copy: 
-    content: "{{ my_tzone }}"
-    dest: /etc/timezone
-    owner: root
-    group: root
-    mode: 0644
-    backup: yes
-  when: current_tzone.stdout != my_tzone
-  notify: update_timezone
-
 - name: Create the primary group -admins- for leading users.
   group: 
     name: admins 
