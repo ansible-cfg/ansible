@@ -7,7 +7,8 @@
 #    - dist_update_upgrade
 #    - etc_hosts-scw
 #    - addgroups_initial
-    - adduser_lvi
+#    - adduser_lvi
+    - adduser_cso
 #    - ssh_config
 
 
