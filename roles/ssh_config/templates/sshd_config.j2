@@ -11,23 +11,23 @@ HostKey {{ sshd.config.rsahostkey }}
 HostKey {{ sshd.config.dsahostkey }}
 HostKey {{ sshd.config.ecdsahostkey }}
 HostKey {{ sshd.config.ed25519hostkey }}
-UsePrivilegeSeparation {{ sshd.config.useprivseparation }}
+UsePrivilegeSeparation {{ sshd.config.useprivseparation|bool }}
 SyslogFacility {{ sshd.config.syslogfacility }}
 LogLevel {{ sshd.config.loglevel }}
 LoginGraceTime {{ sshd.config.logingracetime }}
 PermitRootLogin {{ sshd.config.permitrootlogin }}
-StrictModes {{ sshd.config.strictmodes }}
-RSAAuthentication {{ sshd.config.rsaauthentication }}
-PubkeyAuthentication {{ sshd.config.pubkeyauthentication }}
-IgnoreRhosts {{ sshd.config.ignorerhosts }}
-RhostsRSAAuthentication {{ sshd.config.rhostsrsaauthentication }}
-HostbasedAuthentication {{ sshd.config.hostbasedauthentication }}
-PermitEmptyPasswords {{ sshd.config.permitemptypasswords }}
-ChallengeResponseAuthentication {{ sshd.config.challengeresponseauthentication }}
-PrintLastLog {{ sshd.config.printlastlog }}
-TCPKeepAlive {{ sshd.config.tcpkeepalive }}
-UsePAM {{ sshd.config.usepam }}
-UseDNS {{ sshd.config.usedns }}
+StrictModes {{ sshd.config.strictmodes|bool }}
+RSAAuthentication {{ sshd.config.rsaauthentication|bool }}
+PubkeyAuthentication {{ sshd.config.pubkeyauthentication|bool }}
+IgnoreRhosts {{ sshd.config.ignorerhosts|bool }}
+RhostsRSAAuthentication {{ sshd.config.rhostsrsaauthentication|bool }}
+HostbasedAuthentication {{ sshd.config.hostbasedauthentication|bool }}
+PermitEmptyPasswords {{ sshd.config.permitemptypasswords|bool }}
+ChallengeResponseAuthentication {{ sshd.config.challengeresponseauthentication|bool }}
+PrintLastLog {{ sshd.config.printlastlog|bool }}
+TCPKeepAlive {{ sshd.config.tcpkeepalive|bool }}
+UsePAM {{ sshd.config.usepam|bool }}
+UseDNS {{ sshd.config.usedns|bool }}
 AllowGroups {{ sshd.config.allowgroups }}
 
 #AcceptEnv LANG LC_*

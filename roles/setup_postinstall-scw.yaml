@@ -11,5 +11,7 @@
 #    - adduser_lvi
 #    - adduser_cso
     - ssh_config
-    - fail2ban
-
+#    - fail2ban
+#  post_tasks:
+#    - name:  Restart rsyslog to sync with intalled timezone 
+#      service: name=rsyslog state=restarted

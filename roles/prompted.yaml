@@ -20,5 +20,6 @@
     - adduser_lvi
 #    - ssh_config
   post_tasks:
-    - shell: echo 'goodbye'
+    - name:  Restart rsyslog to sync with intalled timezone 
+      service: name=rsyslog state=restarted
 
