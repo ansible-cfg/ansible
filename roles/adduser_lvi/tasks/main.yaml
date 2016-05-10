@@ -31,5 +31,5 @@
     key: "{{ lookup('file', '/root/.ssh/lvi_rsa.pub') }}"
 
 - name: User lvi will have to change password at first connection.
-  shell: chage -d O lvi
+  shell: chage -d 0 lvi
   when: lvi.changed
