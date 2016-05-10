@@ -11,7 +11,7 @@
     shell: /bin/bash 
     createhome: yes 
     home: /home/lvi 
-    groups: lvi,sudo,sshusers
+    groups: lvi,sudo,admins,sshusers
     append: yes
 
 - name: User lvi will have to change password at first connection.

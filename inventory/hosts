@@ -1,0 +1,14 @@
+[lab]
+lab01.lab.cloud.minsys.io
+lab02.lab.cloud.minsys.io
+
+[int]
+
+[uat]
+
+[prd]
+sensu001.prd.cloud.minsys.io
+frontend001.prd.cloud.minsys.io
+
+[scw_test]
+163.172.145.33
