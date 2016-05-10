@@ -7,13 +7,15 @@
 
 - name: Initial admin user creation - lvi.
   user: 
-    name: lvi 
-    password: azerty123   
-    shell: /bin/bash 
+    name: lvi   
+    shell: /bin/bash
+    password: "{{ 'azerty123' | password_hash('sha512') }}" 
+    update_password: on_create
     createhome: yes 
     home: /home/lvi 
     groups: lvi,sudo,admins,sshusers
     append: yes
+  register: lvi
 
 - name: Create .ssh/ directory in lvi home directory  
   file: 
@@ -30,5 +32,4 @@
 
 - name: User lvi will have to change password at first connection.
   shell: chage -d O lvi
-  args:
-    executable: /bin/bash
+  when: lvi.changed
