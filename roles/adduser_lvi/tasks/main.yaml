@@ -15,9 +15,6 @@
     groups: lvi,sudo,admins,sshusers
     append: yes
 
-- name: User lvi will have to change password at first connection.
-  shell: chage -d O lvi
-
 - name: Create .ssh/ directory in lvi home directory  
   file: 
     path: /home/lvi/.ssh 
@@ -30,3 +27,6 @@
   authorized_key: 
     user: lvi 
     key: "{{ lookup('file', '/root/.ssh/lvi_rsa.pub') }}"
+
+- name: User lvi will have to change password at first connection.
+  shell: chage -d O lvi
