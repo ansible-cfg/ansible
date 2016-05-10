@@ -26,6 +26,6 @@
     mode: "u=rw,g=rw,o=r"
 
 - name: Adding the lvi public key to authorized_keys files.
-    authorized_key: 
-      user: lvi 
-      key: "{{ lookup('file', '/root/.ssh/lvi_rsa.pub') }}"
+  authorized_key: 
+    user: lvi 
+    key: "{{ lookup('file', '/root/.ssh/lvi_rsa.pub') }}"
