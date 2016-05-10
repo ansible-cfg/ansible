@@ -1,4 +1,13 @@
 ---
+
+vars_prompt:
+ - name: "init_password"    
+   prompt: "Enter a password for the user lvi"    
+   private: yes    
+   encrypt: "md5_crypt" #need to have python-passlib installed in local machine before we can use it    
+   confirm: yes    
+   salt_size: 7
+
 - name: Create the lvi group
   group: 
     name: lvi 
@@ -7,7 +16,7 @@
 - name: Initial admin user creation - lvi.
   user: 
     name: lvi 
-    password: "{{ addusers.upassword }}"   
+    password: "init_password"   
     shell: /bin/bash 
     createhome: yes 
     home: /home/lvi 
