@@ -7,7 +7,10 @@
 Port {{ sshd.config.port }}
 ListenAddress {{ sshd.config.listenaddress }}
 Protocol {{ sshd.config.vprotocol }}
-HostKey {{ sshd.config.hostkey }}
+HostKey {{ sshd.config.rsahostkey }}
+HostKey {{ sshd.config.dsahostkey }}
+HostKey {{ sshd.config.ecdsahostkey }}
+HostKey {{ sshd.config.ed25519hostkey }}
 UsePrivilegeSeparation {{ sshd.config.useprivseparation }}
 SyslogFacility {{ sshd.config.syslogfacility }}
 LogLevel {{ sshd.config.loglevel }}
@@ -27,5 +30,5 @@ UsePAM {{ sshd.config.usepam }}
 UseDNS {{ sshd.config.usedns }}
 AllowGroups {{ sshd.config.allowgroups }}
 
-AcceptEnv LANG LC_*
+#AcceptEnv LANG LC_*
 Subsystem sftp /usr/lib/openssh/sftp-server

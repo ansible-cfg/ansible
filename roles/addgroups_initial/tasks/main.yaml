@@ -8,3 +8,9 @@
   group: 
     name: sshusers 
     state: present
+
+- name: Add root to the -sshusers- group for ssh access.
+  user: 
+    name: root  
+    groups: sshusers
+    append: yes
