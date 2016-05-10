@@ -8,7 +8,7 @@
 - name: Initial admin user creation - lvi.
   user: 
     name: lvi 
-    password: "init_password"   
+    password: azerty123   
     shell: /bin/bash 
     createhome: yes 
     home: /home/lvi 
@@ -30,3 +30,5 @@
 
 - name: User lvi will have to change password at first connection.
   shell: chage -d O lvi
+  args:
+    executable: /bin/bash
