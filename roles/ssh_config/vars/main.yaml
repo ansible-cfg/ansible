@@ -25,3 +25,4 @@ sshd:
     tcpkeepalive: yes
     usepam: yes
     allowgroups: sshusers
+    usedns: yes

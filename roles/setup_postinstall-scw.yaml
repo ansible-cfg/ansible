@@ -5,11 +5,11 @@
   hosts: scw_test
   roles:
 #    - dist_update_upgrade
-    - timezone
+#    - timezone
 #    - etc_hosts-scw
 #    - addgroups_initial
 #    - adduser_lvi
 #    - adduser_cso
-#    - ssh_config
-
+    - ssh_config
+    - fail2ban
 
