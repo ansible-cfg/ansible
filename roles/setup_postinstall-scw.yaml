@@ -5,10 +5,11 @@
   hosts: scw_test
   roles:
 #    - dist_update_upgrade
+    - timezone
 #    - etc_hosts-scw
 #    - addgroups_initial
 #    - adduser_lvi
-    - adduser_cso
+#    - adduser_cso
 #    - ssh_config
 
 
