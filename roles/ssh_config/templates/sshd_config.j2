@@ -10,7 +10,7 @@ Protocol {{ sshd.config.vprotocol }}
 HostKey {{ sshd.config.hostkey }}
 UsePrivilegeSeparation {{ sshd.config.useprivseparation }}
 SyslogFacility {{ sshd.config.syslogfacility }}
-LogLevel {{ sshd.config.loglevel }
+LogLevel {{ sshd.config.loglevel }}
 LoginGraceTime {{ sshd.config.logingracetime }}
 PermitRootLogin {{ sshd.config.permitrootlogin }}
 StrictModes {{ sshd.config.strictmodes }}
@@ -27,5 +27,5 @@ UsePAM {{ sshd.config.usepam }}
 UseDNS {{ sshd.config.usedns }}
 AllowGroups {{ sshd.config.allowgroups }}
 
-#AcceptEnv LANG LC_*
-#Subsystem sftp /usr/lib/openssh/sftp-server
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server
