@@ -1,4 +1,4 @@
-# SSHD configuration file.
+# SSH configuration file.
 #
 # !!!----THIS IS AN ANSIBLE MANAGED FILE ----!!!
 #
@@ -27,8 +27,5 @@ UsePAM {{ sshd.config.usepam }}
 UseDNS {{ sshd.config.usedns }}
 AllowGroups {{ sshd.config.allowgroups }}
 
-
-
-
-AcceptEnv LANG LC_*
-Subsystem sftp /usr/lib/openssh/sftp-server
+#AcceptEnv LANG LC_*
+#Subsystem sftp /usr/lib/openssh/sftp-server
