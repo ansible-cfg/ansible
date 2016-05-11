@@ -10,7 +10,7 @@ lab02.lab.cloud.minsys.io
 sensu001.prd.cloud.minsys.io
 frontend001.prd.cloud.minsys.io
 
-[scw_test]
+[scw_minsysio]
 163.172.145.33
 
 [scw_zeste]
