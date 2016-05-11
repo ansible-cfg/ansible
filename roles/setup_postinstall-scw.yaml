@@ -2,7 +2,7 @@
 #ansible-playbook /etc/ansible/roles/setup_postinstall-scw.yaml
 
 - name: 'Postinstall Routine for Scaleway hosts'
-  hosts: ovh_newinstances
+  hosts: scw_newinstances
   roles:
     - dist_update_upgrade-scw
     - timezone-scw
