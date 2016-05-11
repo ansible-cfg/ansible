@@ -1,9 +1,0 @@
----
-
-- name: 'Yet another Ansible playbook to ...'
-  hosts: 
-  #become: true
-  #become_user: root
-  #become_method: sudo
-  roles:
-    - etc_hosts-scw

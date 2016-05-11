@@ -1,0 +1,4 @@
+- name: Adding the root public key to authorized_keys files.
+  authorized_key: 
+    user: root
+    key: "{{ lookup('file', '/root/.ssh/ovh-root_rsa.pub') }}"

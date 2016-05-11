@@ -1,0 +1,9 @@
+---
+- name: Deploy sshd config
+  copy: 
+    src: /etc/ansible/roles/ssh_config/files/sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root 
+    group: root
+    mode: "u=rw,g=r,o=r"
+  notify: Restart SSH

@@ -1,9 +1,0 @@
----
-
-- name: 'Yet another Ansible playbook to initialy update depots and upgrade paquets'
-  hosts: 
-  #become: true
-  #become_user: root
-  #become_method: sudo
-  roles:
-    - dist_update_upgrade

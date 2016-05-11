@@ -1,17 +1,12 @@
 [lab]
-lab01.lab.cloud.minsys.io
-lab02.lab.cloud.minsys.io
 
 [int]
 
 [uat]
 
 [prd]
-sensu001.prd.cloud.minsys.io
-frontend001.prd.cloud.minsys.io
 
-[scw_minsysio]
-163.172.145.33
+[scw_newinstances]
 
-[scw_zeste]
-212.47.227.193
+[ovh_newinstances]
+lab01.lab.cloud.minsys.io
