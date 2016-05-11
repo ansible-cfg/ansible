@@ -3,8 +3,6 @@
 
 - name: 'Postinstall Routine for OVH hosts'
   hosts: ovh_newinstances
-  ansible_ssh_user: admin
-  ansible_ssh_private_key_file: /root/.ssh/ovh-root_rsa
   pre_tasks:
     - name: Adding the root public key to authorized_keys files.
       become: true
