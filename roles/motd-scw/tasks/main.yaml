@@ -1,7 +1,7 @@
 - name: Loading the minsys.io motd  
   copy: 
-    src: /etc/ansible/roles/motd-ovh/files/20-runabove
-    dest: /etc/update-motd.d/20-runabove
+    src: /etc/ansible/roles/motd-scw/files/motd_head
+    dest: /etc/motd.head
     owner: root
     group: root
     mode: "u=rw,g=rw,o=r"

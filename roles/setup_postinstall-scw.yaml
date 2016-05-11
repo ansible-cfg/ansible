@@ -4,14 +4,15 @@
 - name: 'Postinstall Routine for Scaleway hosts'
   hosts: scw_test
   roles:
-#    - dist_update_upgrade
-#    - timezone
-#    - etc_hosts-scw
-#    - addgroups_initial
-#    - adduser_lvi
-#    - adduser_cso
+    - dist_update_upgrade
+    - timezone
+    - etc_hosts-scw
+    - addgroups_initial
+    - adduser_lvi
+    - adduser_cso
     - ssh_config
-#    - fail2ban
-#  post_tasks:
-#    - name:  Restart rsyslog to sync with intalled timezone 
-#      service: name=rsyslog state=restarted
+    - fail2ban
+    - motd-scw
+  post_tasks:
+    - name:  Restart rsyslog to sync with newly intalled timezone 
+      service: name=rsyslog state=restarted
