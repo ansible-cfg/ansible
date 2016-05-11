@@ -2,21 +2,23 @@
 #ansible-playbook /etc/ansible/roles/setup_postinstall-ovh.yaml
 
 - name: 'Postinstall Routine for OVH hosts'
-  hosts: scw_minsysio
+  hosts: ovh_newinstances
   roles:
-    - dist_update_upgrade
-    - timezone
-    - etc_hosts-scw
+    - add_sshkey-ovh
+    - addgroups_initial-ovh
+#    - dist_update_upgrade
+#    - timezone
+#    - etc_hosts-scw
   #desinstaller cloud-utils 
-    - addgroups_initial
-    - adduser_lvi
-    - adduser_cso
-    - ssh_config
-    - fail2ban
-    - motd-scw
-  post_tasks:
-    - name:  Restart rsyslog to sync with newly intalled timezone 
-      service: name=rsyslog state=restarted
+#    - addgroups_initial
+#    - adduser_lvi
+#    - adduser_cso
+#    - ssh_config
+#    - fail2ban
+#    - motd-scw
+#  post_tasks:
+#    - name:  Restart rsyslog to sync with newly intalled timezone 
+#      service: name=rsyslog state=restarted
 
 
 #Se connecter en admin, la commande suivante est effectuée en sudo 
