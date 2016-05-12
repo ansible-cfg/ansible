@@ -12,6 +12,10 @@ lab02.lab.cloud.minsys.io
 [ovh_newinstances]
 lab01.lab.cloud.minsys.io
 
+[scw_newinstances:vars]
+ansible_ssh_user= root
+ansible_ssh_private_key_file= /root/.ssh/scw-root_rsa
+
 [ovh_newinstances:vars]
 ansible_ssh_user= admin
 ansible_ssh_private_key_file= /root/.ssh/ovh-root_rsa
