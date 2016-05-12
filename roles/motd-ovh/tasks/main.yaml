@@ -4,4 +4,4 @@
     dest: /etc/update-motd.d/20-runabove
     owner: root
     group: root
-    mode: "u=rw,g=rw,o=r"
+    mode: "u=rwx,g=rx,o=rx"

@@ -22,6 +22,7 @@ RhostsRSAAuthentication no
 HostbasedAuthentication no
 PermitEmptyPasswords no
 ChallengeResponseAuthentication no
+PasswordAuthentication no
 PrintLastLog yes
 TCPKeepAlive yes
 UsePAM yes

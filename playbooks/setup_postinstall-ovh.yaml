@@ -4,10 +4,10 @@
 - name: 'Postinstall Routine for OVH hosts'
   hosts: ovh_newinstances
   roles:
+    - dist_update_upgrade-ovh
     - addgroups_initial-ovh
     - timezone-ovh
     - etc_hosts-ovh
-    - addgroups_initial-ovh
     - adduser_lvi-ovh
     - ssh_config-ovh
     - fail2ban-ovh
