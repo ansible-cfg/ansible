@@ -13,6 +13,7 @@
     - ssh_config-scw
     - fail2ban-scw
     - motd-scw
+    - add_pkgs-scw
   post_tasks:
     - name:  Restart rsyslog to sync with newly intalled timezone 
       service: name=rsyslog state=restarted

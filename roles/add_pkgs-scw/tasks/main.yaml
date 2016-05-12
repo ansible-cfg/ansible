@@ -1,0 +1,10 @@
+- name: Install Midnight Commander Text Editor, will also install mc .
+  apt: 
+    pkg: mcedit
+    state: present    
+
+- name: Install lynx, the text-mode WWW Browser.
+  apt: 
+    pkg: lynx
+    state: present 
+
