@@ -1,0 +1,13 @@
+---
+#ansible-playbook /etc/ansible/roles/setup_postinstall-ovh.yaml
+
+- name: 'Initialize user for OVH hosts'
+  hosts: ovh_newinstances
+  pre_tasks:
+    - name: Adding the root public key to authorized_keys files.
+      become: true
+      become_user: root
+      become_method: sudo
+      authorized_key: 
+        user: root
+        key: "{{ lookup('file', '/root/.ssh/ovh-root_rsa.pub') }}"

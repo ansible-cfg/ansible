@@ -1,0 +1,18 @@
+---
+#ansible-playbook /etc/ansible/roles/setup_postinstall-ovh.yaml
+
+- name: 'Postinstall Routine for OVH hosts'
+  hosts: ovh_newinstances
+  roles:
+    - addgroups_initial-ovh
+#    - timezone-ovh
+#    - etc_hosts-ovh
+#    - addgroups_initial-ovh
+#    - adduser_lvi-ovh
+#    - adduser_cso-ovh
+#    - ssh_config-ovh
+#    - fail2ban-ovh
+#    - motd-ovh
+#  post_tasks:
+#    - name:  Restart rsyslog to sync with newly intalled timezone 
+#      service: name=rsyslog state=restarted
