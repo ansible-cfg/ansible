@@ -1,0 +1,10 @@
+---
+# tasks file for sensu
+
+- include: common.yaml
+
+- include: server.yaml
+  when: sensu_install_server
+
+- include: client.yaml
+  when: sensu_install_client
