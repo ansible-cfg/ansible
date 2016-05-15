@@ -1,5 +1,5 @@
 ---
-# tasks file for sensu
+# tasks file : inspired by https://github.com/Mayeu/ansible-playbook-sensuxs
 
 - include: common.yaml
 

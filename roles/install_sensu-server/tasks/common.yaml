@@ -4,7 +4,7 @@
 
 - name: add the official Sensu repository
   copy:
-    src=sensu-server.list
+    src=aptrepo_sensu-server.list
     dest=/etc/apt/sources.list.d/
     backup=yes
   register: aptrepo
