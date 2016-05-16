@@ -6,13 +6,13 @@
 
 - include: common.yaml
 
+- include: server.yaml
+  when: sensu_install_server
+
 - include: sensu_redis.yaml
   when: sensu_install_server
 
 - include: sensu_rabbitmq.yaml
-  when: sensu_install_server
-
-- include: server.yaml
   when: sensu_install_server
 
 - include: client.yaml
