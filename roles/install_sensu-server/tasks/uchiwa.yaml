@@ -1,0 +1,32 @@
+---
+- name: Install uchiwa.
+  apt: 
+    name: uchiwa 
+    state: present
+
+- name: Create uchiwa config file.
+  template:
+    src: {{ item }}.json.j2
+    dest: /etc/sensu/conf.d/sensu-framework/{{ item }}.json
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+  with_items:
+    - uchiwa
+
+- name: Start uchiwa at boot reboot.
+  service:
+    name: uchiwa
+    enabled: yes
+
+- name: Create a symlink of uchiwa.json in /etc/sensu/conf.d.
+  file: 
+    src: /etc/sensu/conf.d/sensu-framework/uchiwa.json 
+    dest: /etc/sensu/conf.d/uchiwa.jsono 
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    state: link
+    notify:
+    - Restart Sensu Server
+    - Restart Sensu Client
+    - Restart uchiwa

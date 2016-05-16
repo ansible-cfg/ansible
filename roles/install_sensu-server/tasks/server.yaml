@@ -1,4 +1,58 @@
 ---
+- name: Create the conf.d/checks directory.
+  file:
+    path: /etc/sensu/conf.d/checks
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Create the standard system checks directory conf.d/checks/standard-system-checks.
+  file:
+    path: /etc/sensu/conf.d/checks/standard-system-checks
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Create the conf.d/clients directory.
+  file:
+    path: /etc/sensu/conf.d/clients
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Create the conf.d/sensu-framework directory.
+  file:
+    path: /etc/sensu/conf.d/sensu-framework
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Create the SSL directory.
+  file:
+    path: /etc/sensu/ssl
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+  when: sensu_server_rabbitmq_secure
+
+- name: Copy the SSL certificate & key.
+  copy:
+    src: {{ sensu_cert_dir }}/{{ item }}
+    dest: /etc/sensu/ssl/{{ item }}
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r"
+    backup: yes
+  with_items:
+    - "{{ sensu_cert_file_name }}"
+    - "{{ sensu_key_file_name }}"
+  when: sensu_server_rabbitmq_secure
+
 - name: Copy the Standard System Checks in the appropriate directory.
   copy:
     src: {{ sensu_checks_dir }}/{{ item }}.json
@@ -20,57 +74,17 @@
 - name: Generate the Sensu api config file. 
   template:
     src: {{ item }}.json.j2
-    dest: /etc/sensu/conf.d/{{ item }}.json
+    dest: /etc/sensu/conf.d/sensu-framework/{{ item }}.json
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r,o=r"
   with_items:
     - api
 
-- name: Install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
-  gem: 
-    name: sensu-plugin  
-    state: latest 
-    #executable=/opt/sensu/embedded/bin/gem 
-
-- name: Install Standard Plugins - CPU.
-  gem: 
-    name: sensu-plugins-cpu-checks 
-    state: latest 
-    #executable=/opt/sensu/embedded/bin/gem 
-
-- name: Install Standard Plugins - RAM.
-  gem: 
-    name: sensu-plugins-memory-checks 
-    state: latest 
-    #executable=/opt/sensu/embedded/bin/gem 
-
-- name: Install Standard Plugins - Disks.
-  gem: 
-    name: sensu-plugins-disk-checks 
-    state: latest 
-
-- name: Install Standard Plugins - Load Average.
-  gem: 
-    name: sensu-plugins-disk-checks 
-    state: latest 
-
-- name: Install Standard Plugins - Network.
-  gem: 
-    name: sensu-plugins-network-checks 
-    state: latest 
-
-- name: Install Standard Plugins - Process.
-  gem: 
-    name: sensu-plugins-process-checks
-    state: latest 
-
-
-- name: Start sensu-{server,api} and make it survive a reboot
+- name: Start sensu-{server,api} on boot/reboot
   service:
-    name=sensu-{{ item }}
-    enabled=yes
-    state=started
+    name: sensu-{{ item }}
+    enabled: yes
   with_items:
     - server
     - api

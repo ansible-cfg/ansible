@@ -1,31 +1,55 @@
 ---
-- name: install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
-  gem: 
-    name: sensu-plugin  
-    state: latest 
-    #executable=/opt/sensu/embedded/bin/gem 
-
-- name: copy all the checks files
-  copy:
-    src=files/sensu/plugins/
-    dest=/etc/sensu/plugins/
-    owner="{{ sensu_user }}"
-    group="{{ sensu_group }}"
-    mode=0750
-
-- name: generate config files
+- name: Generate the Sensu client config file. 
   template:
-    src=client.json.j2
-    dest=/etc/sensu/conf.d/client.json
-    owner=sensu
-    group=sensu
-    mode=0640
-    backup=yes
-  notify:
-    - restart sensu client
+    src: {{ item }}.json.j2
+    dest: /etc/sensu/conf.d/sensu-framework/{{ item }}.json
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+  with_items:
+    - client
 
 - name: enable sensu-client to survive reboot
   service:
     name=sensu-client
     enabled=yes
     state=started
+
+- name: Install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
+  gem: 
+    name: sensu-plugin  
+    state: latest 
+    #executable=/opt/sensu/embedded/bin/gem 
+
+- name: Install Standard Plugins - CPU.
+  gem: 
+    name: sensu-plugins-cpu-checks 
+    state: latest 
+    #executable=/opt/sensu/embedded/bin/gem 
+
+- name: Install Standard Plugins - RAM.
+  gem: 
+    name: sensu-plugins-memory-checks 
+    state: latest 
+    #executable=/opt/sensu/embedded/bin/gem 
+
+- name: Install Standard Plugins - Disks.
+  gem: 
+    name: sensu-plugins-disk-checks 
+    state: latest 
+
+- name: Install Standard Plugins - Load Average.
+  gem: 
+    name: sensu-plugins-disk-checks 
+    state: latest 
+
+- name: Install Standard Plugins - Network.
+  gem: 
+    name: sensu-plugins-network-checks 
+    state: latest 
+
+- name: Install Standard Plugins - Process.
+  gem: 
+    name: sensu-plugins-process-checks
+    state: latest
+    

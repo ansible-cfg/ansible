@@ -17,3 +17,6 @@
 
 - include: client.yaml
   when: sensu_install_client
+
+-- include: uchiwa.yaml
+  when: sensu_install_uchiwa
