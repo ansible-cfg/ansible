@@ -42,8 +42,8 @@
 
 - name: Copy the SSL certificate & key.
   copy:
-    src: "{{ sensu_cert_dir }}"/"{{ item }}"
-    dest: /etc/sensu/ssl/"{{ item }}"
+    src: \"{{ sensu_cert_dir }}\"/\"{{ item }}\"
+    dest: /etc/sensu/ssl/\"{{ item }}\"
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r"
@@ -55,8 +55,8 @@
 
 - name: Copy the Standard System Checks in the appropriate directory.
   copy:
-    src: "{{ sensu_checks_dir }}"/"{{ item }}".json
-    dest: /etc/sensu/conf.d/checks/standard-system-checks/"{{ item }}".json
+    src: \"{{ sensu_checks_dir }}\"/\"{{ item }}\".json
+    dest: /etc/sensu/conf.d/checks/standard-system-checks/\"{{ item }}\".json
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r,o=r"
@@ -73,8 +73,8 @@
 
 - name: Generate the Sensu api config file. 
   template:
-    src: "{{ item }}".json.j2
-    dest: /etc/sensu/conf.d/sensu-framework/"{{ item }}".json
+    src: \"{{ item }}\".json.j2
+    dest: /etc/sensu/conf.d/sensu-framework/\"{{ item }}\".json
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r,o=r"
@@ -83,7 +83,7 @@
 
 - name: Start sensu-{server,api} on boot/reboot
   service:
-    name: sensu-"{{ item }}"
+    name: sensu-\"{{ item }}\"
     enabled: yes
   with_items:
     - server
