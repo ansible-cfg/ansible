@@ -13,7 +13,7 @@
   service:
     name=sensu-client
     enabled=yes
-    state=started
+
 
 - name: Install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
   gem: 

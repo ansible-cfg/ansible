@@ -3,7 +3,7 @@
 sensu_install_client: true
 sensu_install_server: true
 sensu_install_uchiwa: true
-
+sensu_install_uchiwa_cloud: false
 #Sensu embedded ruby use ? 
 sensu_embedded_ruby: true
 

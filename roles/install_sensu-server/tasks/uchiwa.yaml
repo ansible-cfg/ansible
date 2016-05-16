@@ -4,7 +4,7 @@
     name: uchiwa 
     state: present
 
-- name: Create uchiwa config file.
+- name: Generate uchiwa config file.
   template:
     src: uchiwa.json.j2
     dest: /etc/sensu/conf.d/sensu-framework/{{ item }}
@@ -21,12 +21,8 @@
 
 - name: Create a symlink of uchiwa.json in /etc/sensu/conf.d.
   file: 
-    src: /etc/sensu/conf.d/sensu-framework/uchiwa.json 
-    dest: /etc/sensu/conf.d/uchiwa.jsono 
+    src: /etc/sensu/conf.d/uchiwa.json 
+    dest: /etc/sensu/conf.d/sensu-framework/uchiwa.json
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     state: link
-    notify:
-    - Restart Sensu Server
-    - Restart Sensu Client
-    - Restart uchiwa

@@ -1,5 +1,5 @@
 ---
-# handlers file for sensu
+# Restarting the Sensu monitoring framework
 - name: Restart Sensu Server.
   service: 
     name: sensu-{{ item }} 
