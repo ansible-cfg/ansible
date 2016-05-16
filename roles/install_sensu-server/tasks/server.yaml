@@ -1,66 +1,70 @@
 ---
+- name: Copy the Standard System Checks in the appropriate directory.
+  copy:
+    src: {{ sensu_checks_dir }}/{{ item }}.json
+    dest: /etc/sensu/conf.d/checks/standard-system-checks/{{ item }}.json
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+    backup: yes
+  with_items:
+    - check-cpu-iowait
+    - check-cpu-softirq
+    - check-cpu-steal
+    - check-cpu-system
+    - check-cpu-user
+    - check-disk-usage
+    - check-load
+    - check-ram-percent
+
+- name: Generate the Sensu api config file. 
+  template:
+    src: {{ item }}.json.j2
+    dest: /etc/sensu/conf.d/{{ item }}.json
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+  with_items:
+    - api
+
 - name: Install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
   gem: 
     name: sensu-plugin  
     state: latest 
     #executable=/opt/sensu/embedded/bin/gem 
 
-- name: Copy the 
-  copy:
-    src: {{ sensu_cert_dir }}/{{ item }}
-    dest: /etc/sensu/ssl/{{ item }}
-    owner: "{{ sensu_user }}"
-    group: "{{ sensu_group }}"
-    mode: "u=rw,g=r,o="
-    backup: yes
-  with_items:
-    - "{{ sensu_cert_file_name }}"
-    - "{{ sensu_key_file_name }}"
+- name: Install Standard Plugins - CPU.
+  gem: 
+    name: sensu-plugins-cpu-checks 
+    state: latest 
+    #executable=/opt/sensu/embedded/bin/gem 
 
+- name: Install Standard Plugins - RAM.
+  gem: 
+    name: sensu-plugins-memory-checks 
+    state: latest 
+    #executable=/opt/sensu/embedded/bin/gem 
 
-- name: copy the handlers files
-  copy:
-    src=files/sensu/handlers/
-    dest=/etc/sensu/handlers/
-    owner=sensu
-    group=sensu
-    mode=0750
+- name: Install Standard Plugins - Disks.
+  gem: 
+    name: sensu-plugins-disk-checks 
+    state: latest 
 
-- name: copy extension files
-  copy:
-    src=files/sensu/extensions/
-    dest=/etc/sensu/extensions/
-    owner=sensu
-    group=sensu
-    mode=0750
-  notify:
-    - restart sensu server
+- name: Install Standard Plugins - Load Average.
+  gem: 
+    name: sensu-plugins-disk-checks 
+    state: latest 
 
-- name: copy plugins files
-  copy:
-    src=files/sensu/plugins/
-    dest=/etc/sensu/plugins/
-    owner=sensu
-    group=sensu
-    mode=0750
-  notify:
-    - restart sensu server
+- name: Install Standard Plugins - Network.
+  gem: 
+    name: sensu-plugins-network-checks 
+    state: latest 
 
-- name: generate config files
-  template:
-    src={{ item }}.json.j2
-    dest=/etc/sensu/conf.d/{{ item }}.json
-    owner=sensu
-    group=sensu
-    mode=0640
-  with_items:
-    - handlers
-    - redis
-    - api
-    - settings
-    - checks
-  notify:
-    - Restart Sensu Server
+- name: Install Standard Plugins - Process.
+  gem: 
+    name: sensu-plugins-process-checks
+    state: latest 
+
 
 - name: Start sensu-{server,api} and make it survive a reboot
   service:

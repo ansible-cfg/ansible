@@ -1,10 +1,10 @@
 ---
-- name: Add the official Sensu repository's key
+- name: Add the official Sensu repository's key.
   apt_key: 
     url: http://repos.sensuapp.org/apt/pubkey.gpg 
     state: present
 
-- name: Add the official Sensu repository
+- name: Add the official Sensu repository.
   copy:
     src: aptrepo_sensu-server.list
     dest: /etc/apt/sources.list.d/
@@ -15,33 +15,33 @@
   apt: update_cache=yes
   when: aptrepo.changed
 
-- name: Install Sensu, the monitoring framework 
+- name: Install Sensu, the monitoring framework.
   apt: 
     name: sensu 
     state: present
 
-- name: Set which Ruby to use
+- name: Set which Ruby to use.
   lineinfile:
     dest: /etc/default/sensu
     regexp: ^EMBEDDED_RUBY=
     line: EMBEDDED_RUBY={{ sensu_embedded_ruby }}
 
-- name: Install ruby 
+- name: Install ruby. 
   apt: 
     name: ruby 
     state: present    
 
-- name: Install ruby-dev
+- name: Install ruby-dev.
   apt: 
     name: ruby-dev 
     state: present 
 
-- name: Install build-essential
+- name: Install build-essential.
   apt: 
     name: build-essential 
     state: present
 
-- name: Create the conf.d/checks directory
+- name: Create the conf.d/checks directory.
   file:
     path: /etc/sensu/conf.d/checks
     owner: "{{ sensu_user }}"
@@ -49,7 +49,7 @@
     mode: "u=rwx,g=rx,o=rx"
     state: directory
 
-- name: Create the standard system checks directory conf.d/checks/standard-system-checks
+- name: Create the standard system checks directory conf.d/checks/standard-system-checks.
   file:
     path: /etc/sensu/conf.d/checks/standard-system-checks
     owner: "{{ sensu_user }}"
@@ -57,7 +57,7 @@
     mode: "u=rwx,g=rx,o=rx"
     state: directory
 
-- name: Create the conf.d/clients directory
+- name: Create the conf.d/clients directory.
   file:
     path: /etc/sensu/conf.d/clients
     owner: "{{ sensu_user }}"
@@ -65,7 +65,7 @@
     mode: "u=rwx,g=rx,o=rx"
     state: directory
 
-- name: Create the conf.d/sensu-framework directory
+- name: Create the conf.d/sensu-framework directory.
   file:
     path: /etc/sensu/conf.d/sensu-framework
     owner: "{{ sensu_user }}"
@@ -73,7 +73,7 @@
     mode: "u=rwx,g=rx,o=rx"
     state: directory
 
-- name: Create the SSL directory
+- name: Create the SSL directory.
   file:
     path: /etc/sensu/ssl
     owner: "{{ sensu_user }}"
@@ -82,7 +82,7 @@
     state: directory
   when: sensu_server_rabbitmq_secure
 
-- name: Copy the SSL certificate & key
+- name: Copy the SSL certificate & key.
   copy:
     src: {{ sensu_cert_dir }}/{{ item }}
     dest: /etc/sensu/ssl/{{ item }}
