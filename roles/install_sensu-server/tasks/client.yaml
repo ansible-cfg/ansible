@@ -1,4 +1,10 @@
 ---
+- name: install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
+  gem: 
+    name: sensu-plugin  
+    state: latest 
+    #executable=/opt/sensu/embedded/bin/gem 
+
 - name: copy all the checks files
   copy:
     src=files/sensu/plugins/
