@@ -42,8 +42,8 @@
 
 - name: Copy the SSL certificate & key.
   copy:
-    src: \"{{ sensu_cert_dir }}\"/\"{{ item }}\"
-    dest: /etc/sensu/ssl/\"{{ item }}\"
+    src: /home/ansible/files/sensu-server/ssl/{{ item }}
+    dest: /etc/sensu/ssl/{{ item }}
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r"
@@ -55,35 +55,35 @@
 
 - name: Copy the Standard System Checks in the appropriate directory.
   copy:
-    src: \"{{ sensu_checks_dir }}\"/\"{{ item }}\".json
-    dest: /etc/sensu/conf.d/checks/standard-system-checks/\"{{ item }}\".json
+    src: /home/ansible/files/sensu-server/checks/{{ item }}
+    dest: /etc/sensu/conf.d/checks/standard-system-checks/{{ item }}
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r,o=r"
     backup: yes
   with_items:
-    - check-cpu-iowait
-    - check-cpu-softirq
-    - check-cpu-steal
-    - check-cpu-system
-    - check-cpu-user
-    - check-disk-usage
-    - check-load
-    - check-ram-percent
-
-- name: Generate the Sensu api config file. 
+    - check-cpu-iowait.json
+    - check-cpu-softirq.json
+    - check-cpu-steal.json
+    - check-cpu-system.json
+    - check-cpu-user.json
+    - check-disk-usage.json
+    - check-load.json
+    - check-ram-percent.json
+    
+- name: Generate the Sensu api config file.
   template:
-    src: \"{{ item }}\".json.j2
-    dest: /etc/sensu/conf.d/sensu-framework/\"{{ item }}\".json
+    src: api.json.j2
+    dest: /etc/sensu/conf.d/sensu-framework/{{ item }}
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r,o=r"
   with_items:
-    - api
+    - api.json
 
 - name: Start sensu-{server,api} on boot/reboot
   service:
-    name: sensu-\"{{ item }}\"
+    name: sensu-{{ item }}
     enabled: yes
   with_items:
     - server

@@ -1,13 +1,13 @@
 ---
 - name: Generate the Sensu client config file. 
   template:
-    src: \"{{ item }}\".json.j2
-    dest: /etc/sensu/conf.d/sensu-framework/\"{{ item }}\".json
+    src: client.json.j2
+    dest: /etc/sensu/conf.d/sensu-framework/{{ item }}
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r,o=r"
   with_items:
-    - client
+    - client.json
 
 - name: enable sensu-client to survive reboot
   service:
