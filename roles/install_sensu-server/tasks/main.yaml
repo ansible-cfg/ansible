@@ -1,7 +1,16 @@
 ---
-# tasks file : inspired by https://github.com/Mayeu/ansible-playbook-sensuxs
+# Main Tasks File : installing a sensu server for every DC @ cloud.minsys.io.  
+# Inspired by https://github.com/Mayeu/ansible-playbook-sensu, thanks @ Mayeu. 
+# Workflow inpired by Scott Lee's, @ DigitalOcean. 
+# Thanks @ scottlee https://www.digitalocean.com/community/users/scottlee.
 
 - include: common.yaml
+
+- include: sensu_redis.yaml
+  when: sensu_install_server
+
+- include: sensu_rabbitmq.yaml
+  when: sensu_install_server
 
 - include: server.yaml
   when: sensu_install_server

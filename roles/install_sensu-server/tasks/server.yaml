@@ -1,30 +1,22 @@
 ---
-- name: install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
+- name: Install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
   gem: 
     name: sensu-plugin  
     state: latest 
     #executable=/opt/sensu/embedded/bin/gem 
 
-
-- name: copy the patched init script
+- name: Copy the 
   copy:
-    src=sensu-{{ item }}
-    dest=/etc/init.d/
-    owner=root
-    group=root
-    mode=755
-    backup=yes
+    src: {{ sensu_cert_dir }}/{{ item }}
+    dest: /etc/sensu/ssl/{{ item }}
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o="
+    backup: yes
   with_items:
-    - server
-    - api
-  when: sensu_server_patch_init_scripts
+    - "{{ sensu_cert_file_name }}"
+    - "{{ sensu_key_file_name }}"
 
-- name: ensure the patched init script are used
-  command: /usr/sbin/update-rc.d -f sensu-{{ item }} remove && /usr/sbin/update-rc.d sensu-{{ item }} defaults
-  with_items:
-    - server
-    - api
-  when: sensu_server_patch_init_scripts
 
 - name: copy the handlers files
   copy:
@@ -68,7 +60,7 @@
     - settings
     - checks
   notify:
-    - restart sensu server
+    - Restart Sensu Server
 
 - name: Start sensu-{server,api} and make it survive a reboot
   service:
