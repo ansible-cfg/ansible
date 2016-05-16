@@ -21,8 +21,9 @@
 
 - name: Create a symlink of uchiwa.json in /etc/sensu/conf.d.
   file: 
-    src: /etc/sensu/conf.d/uchiwa.json 
+    src: /etc/sensu/uchiwa.json 
     dest: /etc/sensu/conf.d/sensu-framework/uchiwa.json
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
+    force: yes
     state: link
