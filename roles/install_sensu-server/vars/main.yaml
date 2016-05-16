@@ -14,24 +14,24 @@ sensu_group: root
 sensu_settings: {}
 
 # Sensu SSL Certificates
-sensu_cert_dir: /home/ansible/files/sensu-server/ssl/
-sensu_cert_file_name: cert.pem
-sensu_key_file_name:  key.pem
+sensu_cert_dir: "/home/ansible/files/sensu-server/ssl/"
+sensu_cert_file_name: "cert.pem"
+sensu_key_file_name: "key.pem"
 
 # Redis variables 
 sensu_server_redis_hostname: "127.0.0.1"
-sensu_server_redis_port: 6379
+sensu_server_redis_port: "6379"
 
 #Rabbitmq variables - This is the RabbitMQ TLS port, if you choose to not use a secure connection, change that and the following boolean to false.
 sensu_server_rabbitmq_secure: true
 sensu_server_rabbitmq_hostname: "127.0.0.1"
-sensu_server_rabbitmq_port: 5671
+sensu_server_rabbitmq_port: "5671"
 sensu_server_rabbitmq_vhost: "/sensu"
 sensu_server_rabbitmq_user: "sensu"
 sensu_server_rabbitmq_password: "placeholder"
 
 # Sensu Server API variable
-sensu_checks_dir: /home/ansible/files/sensu-server/checks/
+sensu_checks_dir: "/home/ansible/files/sensu-server/checks/"
 sensu_server_api_hostname: "127.0.0.1"
 sensu_server_api_port: 4567
 sensu_server_api_user: "sensu"
