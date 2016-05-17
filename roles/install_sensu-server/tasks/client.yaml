@@ -2,7 +2,7 @@
 - name: Generate the Sensu client config file. 
   template:
     src: client.json.j2
-    dest: /etc/sensu/conf.d/sensu-framework/{{ item }}
+    dest: /etc/sensu/conf.d/clients/{{ item }}
     owner: "{{ sensu_user }}"
     group: "{{ sensu_group }}"
     mode: "u=rw,g=r,o=r"

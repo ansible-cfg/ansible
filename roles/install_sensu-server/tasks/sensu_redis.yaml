@@ -1,12 +1,12 @@
 ---
 - name: Install redis.
   apt: 
-    name: redis 
+    name: redis-server
     state: present
 
 - name: Start redis at boot reboot.
   service:
-    name: redis
+    name: redis-server
     enabled: yes
 
 - name: Generate redis config files.
