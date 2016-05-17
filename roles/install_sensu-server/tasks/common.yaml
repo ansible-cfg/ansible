@@ -26,10 +26,15 @@
     regexp: ^EMBEDDED_RUBY=
     line: EMBEDDED_RUBY={{ sensu_embedded_ruby }}
 
+- name: Install gem. 
+  apt: 
+    name: gem 
+    state: present 
+
 - name: Install ruby. 
   apt: 
     name: ruby 
-    state: present    
+    state: present   
 
 - name: Install ruby-dev.
   apt: 

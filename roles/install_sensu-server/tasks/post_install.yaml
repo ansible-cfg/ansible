@@ -19,7 +19,7 @@
 
 - name: Start uchiwa DC.
   service: 
-    name: sensu-{{ item }} 
+    name: {{ item }} 
     state: started
   with_items:
     - uchiwa
