@@ -1,4 +1,14 @@
 ---
+- name: Install redis.
+  apt: 
+    name: redis 
+    state: present
+
+- name: Start redis at boot reboot.
+  service:
+    name: redis
+    enabled: yes
+
 - name: Generate redis config files.
   template:
     src: redis.json.j2

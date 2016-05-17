@@ -1,26 +1,26 @@
 ---
 # Restarting the Sensu monitoring framework
-- name: Restart Sensu Server.
+- name: Start Sensu Server.
   service: 
     name: sensu-{{ item }} 
-    state: restarted
+    state: started
   with_items:
     - server
     - api
   when: sensu_install_server
 
-- name: Restart Sensu Client.
+- name: Start Sensu Client.
   service: 
     name: sensu-{{ item }} 
-    state: restarted
+    state: started
   with_items:
     - client
   when: sensu_install_client
 
-- name: Restart uchiwa DC.
+- name: Start uchiwa DC.
   service: 
     name: sensu-{{ item }} 
-    state: restarted
+    state: started
   with_items:
     - uchiwa
   when: sensu_install_uchiwa

@@ -22,6 +22,13 @@ sensu_server_redis_hostname: "127.0.0.1"
 sensu_server_redis_port: "6379"
 
 #Rabbitmq variables - This is the RabbitMQ TLS port, if you choose to not use a secure connection, change that and the following boolean to false.
+ansible_rabbitmq_cacert: "/home/ansible/ssl/cacert.pem"
+sensu_rabbitmq_cacert: "/etc/rabbitmq/ssl/cacert.pem"
+ansible_rabbitmq_key: "/home/ansible/ssl/key.pem"
+sensu_rabbitmq_key: "/etc/rabbitmq/ssl/key.pem"
+ansible_rabbitmq_cert: "/home/ansible/ssl/cert.pem"
+sensu_rabbitmq_cert: "/etc/rabbitmq/ssl/cert.pem"
+
 sensu_server_rabbitmq_secure: true
 sensu_server_rabbitmq_hostname: "127.0.0.1"
 sensu_server_rabbitmq_port: "5671"

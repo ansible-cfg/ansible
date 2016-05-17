@@ -1,5 +1,111 @@
 ---
-- name: Generate rabbitmq config files.
+
+# RabbitMQ official install
+- name: Add the official rabbitmq repository's key.
+  apt_key: 
+    url: http://www.rabbitmq.com/rabbitmq-signing-key-public.asc 
+    state: present
+
+- name: Add the official rabbitmq repository.
+  copy:
+    src: aptrepo_rabbitmq.list
+    dest: /etc/apt/sources.list.d/
+    backup: yes
+  register: aptrepo
+
+- name: Refresh apt cache.
+  apt: 
+    update_cache: yes
+  when: aptrepo.changed
+
+- name: Install rabbitmq-server.
+  apt: 
+    name: rabbitmq-server
+    state: present
+
+- name: Install erlang-nox. 
+  apt: 
+    name: erlang-nox
+    state: present
+
+- name: Enable rabbitmq-server to survive reboot.
+  service: 
+    name: rabbitmq-server 
+    enabled: yes
+
+- name: Create the ssl folder for rabbitmq.
+  file:
+    path: /etc/rabbitmq/ssl/
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Copy the ssl certificates
+  copy:
+    src: {{ item.src }}
+    dest: {{ item.dest }}
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+    backup=yes
+  with_items:
+    - src: "{{ ansible_rabbitmq_cacert }}"
+      dest: "{{ sensu_rabbitmq_cacert }}"
+    - src: "{{ ansible_rabbitmq_key }}"
+      dest: "{{ sensu_rabbitmq_key }}"
+    - src: "{{ ansible_rabbitmq_cert }}"
+      dest: "{{ sensu_rabbitmq_cert }}"
+
+- name: Generate the configuration of rabbitmq daemon
+  template:
+    src: rabbitmq.config.j2
+    dest: /etc/rabbitmq/rabbitmq.config
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+ 
+ - name: Restart rabbitmq.
+  service: 
+    name: rabbitmq-server
+    state: restarted
+
+- name: Add rabbitmq vhost sensu dedicated.
+  rabbitmq_vhost: 
+    name: "/sensu"
+    node: "rabbit"
+    tracing: no
+    state: present
+
+- name: Add rabbitmq user and set privileges
+  rabbitmq_user:
+    user: "sensu"
+    password: "rabbitmq_sensu"
+    vhost: "/sensu"
+    node: "rabbit"
+    configure_priv: ".*"    
+    read_priv: ".*"
+    write_priv: ".*"
+    state: present
+    force: yes
+
+- name: remove guest user (hostname)
+  rabbitmq_user:
+    user: "guest"
+    vhost: "/"
+    node: "rabbit@{{ ansible_hostname }}"
+    state: absent
+  register: rm_guest_hostname
+  ignore_errors: true
+
+- name: remove guest user (default)
+  rabbitmq_user:
+    user: "guest"
+    vhost: "/"
+    state: absent
+  when: rm_guest_hostname|failed
+
+- name: Generate rabbitmq ansible config files.
   template:
     src: rabbitmq.json.j2
     dest: /etc/sensu/conf.d/sensu-framework/{{ item }}
