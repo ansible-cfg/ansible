@@ -19,8 +19,6 @@
 
 - name: Start uchiwa DC.
   service: 
-    name: {{ item }} 
+    name: uchiwa
     state: started
-  with_items:
-    - uchiwa
   when: sensu_install_uchiwa
