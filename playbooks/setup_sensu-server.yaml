@@ -5,3 +5,4 @@
   hosts: scw_newinstances
   roles:
     - install_sensu-server
+
