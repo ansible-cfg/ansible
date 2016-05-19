@@ -1,0 +1,47 @@
+---
+- name: Add the official Sensu repository's key.
+  apt_key: 
+    url: http://repos.sensuapp.org/apt/pubkey.gpg 
+    state: present
+
+- name: Add the official Sensu repository.
+  copy:
+    src: aptrepo_sensu-server.list
+    dest: /etc/apt/sources.list.d/
+    backup: yes
+  register: aptrepo
+
+- name: Refresh apt cache
+  apt: update_cache=yes
+  when: aptrepo.changed
+
+- name: Install Sensu, the monitoring framework.
+  apt: 
+    name: sensu 
+    state: present
+
+####
+#ici creer arborescence conf.d/checks , ..... 
+###
+
+- name: Install gem. 
+  apt: 
+    name: gem 
+    state: present 
+
+- name: Install ruby. 
+  apt: 
+    name: ruby 
+    state: present   
+
+- name: Install ruby-dev.
+  apt: 
+    name: ruby-dev 
+    state: present 
+
+- name: Install build-essential.
+  apt: 
+    name: build-essential 
+    state: present
+
+
