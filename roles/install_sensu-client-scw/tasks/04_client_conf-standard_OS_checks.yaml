@@ -29,7 +29,7 @@
 
 - name: Install Standard Plugins - Load Average.
   gem: 
-    name: sensu-plugins-disk-checks 
+    name: sensu-plugins-load-checks
     state: latest 
     include_dependencies: yes      
     user_install: no
