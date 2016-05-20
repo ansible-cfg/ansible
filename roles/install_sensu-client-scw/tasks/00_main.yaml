@@ -1,0 +1,7 @@
+---
+# Main Tasks File : installing a sensu client for every DC scw@cloud.minsys.io.  
+- include: 01_install_base-pkgs.yaml
+- include: 02_client_conf-base.yaml
+- include: 03_client_conf-rabbitmq.yaml
+- include: 04_client_conf-standard_OS_checks.yaml
+- include: 05_postinstall.yaml

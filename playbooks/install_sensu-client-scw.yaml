@@ -1,8 +1,8 @@
 ---
 #ansible-playbook /etc/ansible/roles/setup_postinstall-scw.yaml
 
-- name: 'Postinstall Routine for Scaleway hosts'
+- name: 'Install sensu-client with standard OS ckecks'
   hosts: scw_newinstances
   roles:
-    - install_sensu-server
+    - install_sensu-client-scw  
 

@@ -20,9 +20,12 @@
     name: sensu 
     state: present
 
-####
-#ici creer arborescence conf.d/checks , ..... 
-###
+- name: Enable sensu-client to survive reboot.
+  service: 
+    name: sensu-{{ item }} 
+    enabled: yes
+  with_items:
+    - client
 
 - name: Install gem. 
   apt: 

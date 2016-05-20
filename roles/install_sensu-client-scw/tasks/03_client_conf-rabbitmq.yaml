@@ -1,0 +1,26 @@
+---
+- name: Copy the SSL certificate & key.
+  copy:
+    src: /home/ansible/safebox/ssl/scw.cloud.minsys.io/sensu-client-rabbitmq/{{ item }}
+    dest: /etc/sensu/ssl/{{ item }}
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r"
+    backup: yes
+  with_items:
+    - "{{ sensu_cert_file_name }}"
+    - "{{ sensu_key_file_name }}"
+
+
+- name: Generate rabbitmq for sensu client config files.
+  template:
+    src: rabbitmq.json.j2
+    dest: /etc/sensu/conf.d/sensu-framework/{{ item }}
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+  with_items:
+    - rabbitmq.json
+    
+
+

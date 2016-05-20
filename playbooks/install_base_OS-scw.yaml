@@ -3,6 +3,10 @@
 
 - name: 'Postinstall Routine for Scaleway hosts'
   hosts: scw_newinstances
+  vars_prompt:
+  - name: "prompted_fqdn"
+    prompt: "Please enter the fqdn of this new host - hostname.env.scw.cloud.minsys.io. env:lab,int,uat,prd."
+    private: no 
   roles:
     - dist_update_upgrade-scw
     - timezone-scw

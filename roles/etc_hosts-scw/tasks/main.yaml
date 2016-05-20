@@ -1,8 +1,4 @@
 ---
-- name: Pick up the hostname 
-  shell: cat /etc/hostname
-  register: etc_hostname
-
 - name: Fill the config file with the appropriate hostname
   template: 
     src: etc_hosts.j2 
