@@ -1,0 +1,10 @@
+- name: Generate the Sensu client config file. 
+  template:
+    src: {{ item }}.j2
+    dest: /home/lvi/{{ item }}
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+  with_items:
+    - client.json
+    - etc_hosts
