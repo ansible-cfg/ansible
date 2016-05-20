@@ -27,11 +27,6 @@
   with_items:
     - client
 
-- name: Install gem. 
-  apt: 
-    name: gem 
-    state: present 
-
 - name: Install ruby. 
   apt: 
     name: ruby 
