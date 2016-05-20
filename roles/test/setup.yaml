@@ -3,7 +3,7 @@
 #Commandline : EXAMPLE
 
 - name: "Test generation fichier de conf sensu avec subscptions en fonction de env:prd,uat.."
-  hosts: 
+  hosts: scw_newinstances
   vars_prompt:
     - name: "prompted_dc"
       prompt: "Please enter dc -> scw"
@@ -16,7 +16,7 @@
       private: no
   pre_tasks:     
     - fail: 
-        msg: "No deployment this time"
+        msg: "No deployment this time... aborted by user"
       when: confirm != 'yes'
   roles:
     - test
