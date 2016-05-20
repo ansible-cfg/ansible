@@ -4,51 +4,49 @@
     name: sensu-plugin  
     state: latest
     include_dependencies: yes      
-    user_install: yes
+    user_install: no
 
 - name: Install Standard Plugins - CPU.
   gem: 
     name: sensu-plugins-cpu-checks 
     state: latest 
     include_dependencies: yes      
-    user_install: yes
+    user_install: no
 
 - name: Install Standard Plugins - RAM.
   gem: 
     name: sensu-plugins-memory-checks 
     state: latest  
     include_dependencies: yes      
-    user_install: yes
+    user_install: no
 
 - name: Install Standard Plugins - Disks.
   gem: 
     name: sensu-plugins-disk-checks 
     state: latest 
     include_dependencies: yes      
-    user_install: yes
+    user_install: no
 
 - name: Install Standard Plugins - Load Average.
   gem: 
     name: sensu-plugins-disk-checks 
     state: latest 
     include_dependencies: yes      
-    user_install: yes
+    user_install: no
 
 - name: Install Standard Plugins - Network.
   gem: 
     name: sensu-plugins-network-checks 
     state: latest 
     include_dependencies: yes      
-    user_install: yes
-    include_dependencies: yes      
-    user_install: yes
+    user_install: no
 
 - name: Install Standard Plugins - Process.
   gem: 
     name: sensu-plugins-process-checks
     state: latest
     include_dependencies: yes      
-    user_install: yes
+    user_install: no
 
 - name: Copy the Standard System Checks in the appropriate directory.
   copy:
