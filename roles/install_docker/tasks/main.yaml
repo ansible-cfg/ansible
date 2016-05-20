@@ -1,25 +1,5 @@
 ---
-
-- name: Generate the Sensu client config file. 
-  template:
-    src: client.json.j2
-    dest: /home/lvi/{{ item }}
-    owner: "{{ sensu_user }}"
-    group: "{{ sensu_group }}"
-    mode: "u=rw,g=r,o=r"
-  with_items:
-    - client.json
-
-- name: Generate the Sensu client config file. 
-  template:
-    src: etc_hosts.j2
-    dest: /home/lvi/{{ item }}
-    owner: "{{ sensu_user }}"
-    group: "{{ sensu_group }}"
-    mode: "u=rw,g=r,o=r"
-  with_items:
-    - etc_hosts
-
+## Prerequisites
 - name: Install APT over https.
   apt: 
     name: apt-transport-https
@@ -61,4 +41,3 @@
   service: 
     name: docker 
     state: started
-

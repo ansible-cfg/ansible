@@ -4,9 +4,19 @@
 - name: 'Postinstall Routine for Scaleway hosts'
   hosts: scw_newinstances
   vars_prompt:
-  - name: "prompted_fqdn"
-    prompt: "Please enter the fqdn of this new host - hostname.env.scw.cloud.minsys.io. env:lab,int,uat,prd."
-    private: no 
+    - name: "prompted_dc"
+      prompt: "Please enter dc -> scw"
+      private: no 
+    - name: "prompted_env"
+      prompt: "Please enter env -> lab,int,uat,prd."
+      private: no 
+    - name: "confirm"
+      prompt: "Continuer ? yes / no"
+      private: no
+  pre_tasks:     
+    - fail: 
+        msg: "No deployment this time... aborted by user"
+      when: confirm != 'yes'
   roles:
     - dist_update_upgrade-scw
     - timezone-scw

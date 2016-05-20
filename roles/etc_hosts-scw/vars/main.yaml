@@ -1,3 +1,4 @@
 ---
 sensu_client_hostname: "{{ ansible_hostname }}"
-sensu_client_fqdn: "{{ prompted_fqdn }}"
+sensu_client_env: "{{ prompted_env }}"
+sensu_client_dc: "{{ prompted_dc }}"
