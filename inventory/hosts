@@ -10,7 +10,7 @@
 163.172.155.235
 
 [ovh_newinstances]
-lab01.lab.cloud.minsys.io
+188.165.241.28
 
 [scw_newinstances:vars]
 host_key_checking = False
