@@ -4,7 +4,7 @@
 #
 # Need help ? Contact : support@minsys.io 
 
-127.0.1.1       {{ etc_hostname.stdout }}
+127.0.1.1       {{ sensu_client_hostname }}.{{ sensu_client_env }}.{{ sensu_client_dc }}.cloud.minsys.io	{{ sensu_client_hostname }}
 127.0.0.1       localhost
 ::1             localhost ip6-localhost ip6-loopback
 ff02::1         ip6-allnodes

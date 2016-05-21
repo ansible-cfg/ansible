@@ -1,3 +1,7 @@
 ---
 ansible_ssh_user: root
 ansible_ssh_private_key_file: /root/.ssh/ovh-root_rsa
+
+sensu_client_hostname: "{{ ansible_hostname }}"
+sensu_client_env: "{{ prompted_env }}"
+sensu_client_dc: "{{ prompted_dc }}"

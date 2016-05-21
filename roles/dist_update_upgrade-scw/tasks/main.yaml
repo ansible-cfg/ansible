@@ -1,3 +1,6 @@
 ---
 - name: Upgrade distribution after depots update 
-  apt: upgrade=dist update_cache=yes dpkg_options='force-confold,force-confdef'
+  apt: 
+    upgrade: dist 
+    update_cache: yes 
+    dpkg_options: 'force-confold,force-confdef'

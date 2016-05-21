@@ -1,0 +1,8 @@
+---
+# handlers file for sensu
+- name: Restart Sensu Client.
+  service: 
+    name: sensu-{{ item }} 
+    state: restarted
+  with_items:
+    - client

@@ -3,12 +3,27 @@
 
 - name: 'Postinstall Routine for OVH hosts'
   hosts: ovh_newinstances
+  vars_prompt:
+    - name: "prompted_dc"
+      prompt: "Please enter dc -> scw"
+      private: no 
+    - name: "prompted_env"
+      prompt: "Please enter env -> lab,int,uat,prd."
+      private: no 
+    - name: "confirm"
+      prompt: "Continuer ? yes / no"
+      private: no
+  pre_tasks:     
+    - fail: 
+        msg: "No deployment this time... aborted by user"
+      when: confirm != 'yes'
   roles:
     - dist_update_upgrade-ovh
     - addgroups_initial-ovh
     - timezone-ovh
     - etc_hosts-ovh
     - adduser_lvi-ovh
+    - adduser_cso-ovh
     - ssh_config-ovh
     - fail2ban-ovh
     - motd-ovh
