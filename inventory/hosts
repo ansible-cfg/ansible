@@ -10,6 +10,8 @@
 163.172.155.235
 
 [ovh_newinstances]
+
+[ovh-sys_newinstances]
 188.165.241.28
 
 [scw_newinstances:vars]
@@ -18,6 +20,11 @@ ansible_ssh_user= root
 ansible_ssh_private_key_file= /root/.ssh/scw-root_rsa
 
 [ovh_newinstances:vars]
+host_key_checking= False
+ansible_ssh_user= admin
+ansible_ssh_private_key_file= /root/.ssh/ovh-root_rsa
+
+[ovh-sys_newinstances:vars]
 host_key_checking= False
 ansible_ssh_user= admin
 ansible_ssh_private_key_file= /root/.ssh/ovh-root_rsa

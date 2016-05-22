@@ -1,0 +1,31 @@
+---
+#Initial password to be changed at first boot
+init_password: "{{ prompted_pass }}"
+
+#Timezone 
+timezone:
+  my_tzone: "Europe/Paris"
+
+#/etc/hosts configuration
+sensu_client_hostname: "{{ ansible_hostname }}"
+sensu_client_env: "{{ prompted_env }}"
+
+#/etc/ssh/sshd_config configuration
+ssh_bind_port: "22"
+
+#Fail2Ban configuration
+fail2ban:
+  config:
+    ignoreip: 127.0.0.1/8
+    bantime: 600
+    findtime: 600
+    maxretry: 3
+    backend: auto
+    usedns: warn
+    destemail: root@localhost
+    sendername: Fail2Ban
+    banaction: iptables-multiport
+    mta: sendmail
+    protocol: tcp
+    chain: INPUT
+

@@ -1,0 +1,7 @@
+- name: motd configuration | Loading the minsys.io motd  
+  copy: 
+    src: motd_head
+    dest: /etc/motd.head
+    owner: root
+    group: root
+    mode: "u=rw,g=rw,o=r"

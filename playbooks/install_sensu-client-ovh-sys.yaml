@@ -1,0 +1,11 @@
+---
+#ansible-playbook /etc/ansible/roles/setup_postinstall-scw.yaml
+
+- name: 'Install sensu-client with standard OS ckecks'
+  hosts: ovh_newinstances
+  vars_prompt:
+    - name: "prompted_env"
+      prompt: "Please enter env -> lab,int,uat,prd."
+      private: no 
+  roles:
+    - install_sensu-client-ovh 

@@ -1,7 +1,6 @@
 ---
-#ansible-playbook /etc/ansible/roles/setup_postinstall-scw.yaml
-
 - name: 'Install Docker'
   hosts: scw_newinstances
   roles:
     - install_docker 
+
