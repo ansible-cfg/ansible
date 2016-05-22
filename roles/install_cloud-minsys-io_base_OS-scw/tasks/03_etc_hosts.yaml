@@ -1,5 +1,5 @@
 ---
-- name: Configuration file /etc/hosts | Generate the config file with the appropriate hostname & fqdn
+- name: Configuration file /etc/hosts | Generate the config file with the appropriate hostname & fqdn.
   template: 
     src: etc_hosts.j2 
     dest: /etc/hosts
