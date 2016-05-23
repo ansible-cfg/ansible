@@ -9,7 +9,7 @@
       prompt: "Please enter environnement for the new host. Choose one: -> lab,int,uat,prd"
       private: no 
     - name: "confirm"
-      prompt: "Continuer ? yes / no"
+      prompt: " Continue ? :  yes / no"
       private: no
   pre_tasks:     
     - fail: 

@@ -8,7 +8,7 @@
   user: 
     name: cso   
     shell: /bin/bash
-    password: "{{ init_password }}"
+    password: "{{ 'init_password' | password_hash('sha512') }}" 
     update_password: on_create
     createhome: yes
     home: /home/cso 
