@@ -10,6 +10,6 @@
       privileged: yes
       detach: True
       volumes: /var/run/docker.sock:/var/run/docker.sock
-      command: http://docker-forge.cloud.minsys.io:8080/v1/scripts/890BC456305F2DEEEB39:1463954400000:RyUdeO9sdNCom396sHwDZKofts
+      command: https://cloud.minsys.io/v1/scripts/6F2DD31AB021F1CA6831:1464037200000:mKT4prP9XU31QdBgVQqnAZI
       state: started
   when: "{{ 'rancher-agent' not in containers.stdout }}"
