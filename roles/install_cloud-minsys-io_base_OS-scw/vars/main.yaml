@@ -1,6 +1,6 @@
 ---
 #Initial password to be changed at first boot
-init_password: "{{ prompted_pass }}"
+#init_password: "{{ prompted_pass }}"
 
 #Timezone 
 timezone:
