@@ -1,0 +1,19 @@
+---
+- name: 'Postinstall Routine for OVH So you Start hosts'
+  hosts: ovh-sys_newinstances
+  vars_prompt:
+#    - name: "prompted_pass"
+#      prompt: "Please specify the temporary initial password for users, to be changed at first boot"
+#      private: no 
+    - name: "prompted_env"
+      prompt: "Please enter environnement for the new host. Choose one: -> lab,int,uat,prd"
+      private: no 
+    - name: "confirm"
+      prompt: " Continue ?: yes / no"
+      private: no
+  pre_tasks:     
+    - fail: 
+        msg: "No deployment this time... aborted by user"
+      when: confirm != 'yes'
+  roles:
+    - install_cloud-minsys-io_base_OS-ovh-sys
