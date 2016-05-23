@@ -19,7 +19,7 @@
 
 - name: Install dependencies
   apt: 
-    name: {{ item }} 
+    name: "{{ item }}" 
     update_cache: yes
   with_items: 
       - python-dev
