@@ -1,7 +1,7 @@
 {
    "client": {
       "name": "{{ sensu_client_hostname }}",
-      "address": "{{ sensu_client_fqdn }}",
+      "address": "{{ sensu_client_hostname }}.{{ sensu_client_env }}.scw.cloud.minsys.io",
       "subscriptions": ["all", "{{ sensu_client_env }}", "scw.cloud.minsys.io"]
    }
 }

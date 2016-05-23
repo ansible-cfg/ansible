@@ -48,7 +48,7 @@
     include_dependencies: yes      
     user_install: no
 
-- name: Install Standard Plugins - Process.
+- name: Install Standard Plugins - Docker.
   gem: 
     name: sensu-plugins-docker
     state: latest
