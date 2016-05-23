@@ -7,7 +7,6 @@
 [prd]
 
 [scw_newinstances]
-minion02.lab.scw.cloud.minsys.io
 minion03.lab.scw.cloud.minsys.io
 
 [ovh_newinstances]
