@@ -39,6 +39,14 @@
     mode: "u=rwx,g=rx,o=rx"
     state: directory
 
+- name: Check the public ip adress of the minion
+  shell: curl -s http://whatismijnip.nl |cut -d " " -f 5
+  register: public_ip
+
+- name: Check the public ip adress of the host
+  set_fact: 
+    minion_public_ip: "{{ public_ip.stdout }}"
+
 - name: Generate the Sensu client config file. 
   template:
     src: client.json.j2
