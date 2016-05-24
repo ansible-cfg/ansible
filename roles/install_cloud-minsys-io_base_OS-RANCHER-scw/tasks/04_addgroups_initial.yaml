@@ -1,0 +1,16 @@
+---
+- name: addgroup | Create the group -admins- for leading users.
+  group: 
+    name: admins 
+    state: present
+
+- name: addgroup | Create the group -sshusers- for ssh access-granted users.
+  group: 
+    name: sshusers 
+    state: present
+
+- name: adduser to a group | Add root to the -sshusers- group for ssh access.
+  user: 
+    name: root  
+    groups: sshusers
+    append: yes
