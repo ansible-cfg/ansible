@@ -1,0 +1,5 @@
+---
+# Main Tasks File : installing a sensu client for every DC scw@cloud.minsys.io.  
+- include: 12_sensu-client_conf-base.yaml
+#- include: 16_docker_install.yaml
+#- include: 17_docker_run_rancher-agent.yaml

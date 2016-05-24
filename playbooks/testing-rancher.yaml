@@ -16,4 +16,4 @@
         msg: "No deployment this time... aborted by user"
       when: confirm != 'yes'
   roles:
-    - install_cloud-minsys-io_base_OS-RANCHER-scw
+    - testing-rancher
