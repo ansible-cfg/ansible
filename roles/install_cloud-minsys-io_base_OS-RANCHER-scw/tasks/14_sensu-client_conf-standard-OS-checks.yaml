@@ -48,12 +48,12 @@
     include_dependencies: yes      
     user_install: no
 
-- name: Install Standard Plugins - Docker.
-  gem: 
-    name: sensu-plugins-docker
-    state: latest
-    include_dependencies: yes      
-    user_install: no
+#- name: Install Standard Plugins - Docker.
+#  gem: 
+#    name: sensu-plugins-docker
+#    state: latest
+#    include_dependencies: yes      
+#    user_install: no
 
 #- name: Copy the Standard System Checks in the appropriate directory.
 #  copy:
