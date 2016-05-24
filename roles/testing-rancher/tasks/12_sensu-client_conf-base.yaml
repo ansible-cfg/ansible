@@ -5,7 +5,7 @@
 
 - name: Check the public ip adress of the host
   set_fact: 
-    minion_public_ip: public_ip.stdout
+    minion_public_ip: "{{ public_ip.stdout }}"
 
 - name: Generate the Sensu client config file. 
   template:
