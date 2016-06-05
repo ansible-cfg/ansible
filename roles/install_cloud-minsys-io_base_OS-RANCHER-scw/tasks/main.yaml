@@ -15,5 +15,5 @@
 - include: 13_sensu-client_conf-rabbitmq.yaml
 - include: 14_sensu-client_conf-standard-OS-checks.yaml
 - include: 15_sensu-client_postinstall.yaml
-#- include: 16_docker_install.yaml
+- include: 16_docker_install.yaml
 #- include: 17_docker_run_rancher-agent.yaml
