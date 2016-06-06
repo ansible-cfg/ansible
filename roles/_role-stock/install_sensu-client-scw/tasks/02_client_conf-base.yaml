@@ -1,0 +1,51 @@
+---
+- name: Create the conf.d/checks directory.
+  file:
+    path: /etc/sensu/conf.d/checks
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Create the standard system checks directory conf.d/checks/standard-OS-checks.
+  file:
+    path: /etc/sensu/conf.d/checks/standard-OS-checks
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Create the conf.d/client directory.
+  file:
+    path: /etc/sensu/conf.d/client
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Create the conf.d/sensu-framework directory.
+  file:
+    path: /etc/sensu/conf.d/sensu-framework
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Create the SSL directory.
+  file:
+    path: /etc/sensu/ssl
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Generate the Sensu client config file. 
+  template:
+    src: client.json.j2
+    dest: /etc/sensu/conf.d/client/{{ item }}
+    owner: "{{ sensu_user }}"
+    group: "{{ sensu_group }}"
+    mode: "u=rw,g=r,o=r"
+  with_items:
+    - client.json
+

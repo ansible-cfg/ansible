@@ -1,0 +1,16 @@
+---
+- name: 'Deploy a cloud.minsys.io compliant minion on Scaleway : Base Installation'
+  hosts: new_minion_scw_base
+  vars_prompt: 
+    - name: "prompted_env"
+      prompt: "Please enter environnement for the new host. Choose one: -> lab,int,uat,prd"
+      private: no 
+    - name: "confirm"
+      prompt: "Continue ? : yes / no"
+      private: no
+  pre_tasks:     
+    - fail: 
+        msg: "No deployment this time... aborted by user"
+      when: confirm != 'yes'
+  roles:
+    - scw_deploy_minion_base

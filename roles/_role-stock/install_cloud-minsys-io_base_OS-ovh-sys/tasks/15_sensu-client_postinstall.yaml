@@ -1,0 +1,14 @@
+---
+## add 'sensu' user to the 'sudo' group 
+- name: Adding user 'sensu' to the the 'sudo' group 
+  user: 
+    name: sensu
+    groups: sudo
+    append: yes
+
+- name: Start Sensu Client.
+  service: 
+    name: sensu-{{ item }} 
+    state: started
+  with_items:
+    - client

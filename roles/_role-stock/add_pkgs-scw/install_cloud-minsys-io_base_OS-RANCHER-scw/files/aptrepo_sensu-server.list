@@ -1,0 +1,2 @@
+# Official repository of sensu the monitoring framework. 
+deb http://repos.sensuapp.org/apt sensu main
