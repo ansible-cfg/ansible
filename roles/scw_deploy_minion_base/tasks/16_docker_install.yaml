@@ -57,7 +57,8 @@
     state: present
 
 ## Check service
-- name: Docker | Check service daemon
-  service: 
-    name: docker 
-    state: started
+#- name: Docker | Check service daemon
+#  service: 
+#    name: docker 
+#    state: started
+

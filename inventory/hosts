@@ -7,12 +7,10 @@
 [prd]
 
 [scw_newinstances]
-163.172.145.33
 
 [ovh_newinstances]
 
 [ovh-sys_newinstances]
-minion01.int.ovh.cloud.minsys.io
 
 [scw_newinstances:vars]
 host_key_checking = False

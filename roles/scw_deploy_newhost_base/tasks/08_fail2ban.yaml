@@ -1,0 +1,15 @@
+---
+- name: Install fail2ban.
+  apt: 
+    pkg: fail2ban 
+    state: present
+
+- name: Deploy fail2ban config - ssh and ssh-ddos only. 
+  template: 
+    src: jail.local.j2 
+    dest: /etc/fail2ban/jail.local
+
+- name: Restart Fail2Ban
+  service: 
+    name: fail2ban 
+    state: restarted

@@ -1,0 +1,17 @@
+---
+# Main Tasks File : installing a sensu client for every DC scw@cloud.minsys.io.  
+- include: 01_dist_update_upgrade.yaml
+- include: 02_timezone.yaml
+- include: 03_etc_hosts.yaml
+- include: 04_addgroups_initial.yaml
+- include: 05_adduser_lvi.yaml
+- include: 06_adduser_cso.yaml
+- include: 07_sshd_config.yaml
+- include: 08_fail2ban.yaml
+- include: 09_motd.yaml
+- include: 10_extra_pkgs.yaml
+- include: 11_sensu-client_install-base-pkgs.yaml
+- include: 12_sensu-client_conf-base.yaml
+- include: 13_sensu-client_conf-rabbitmq.yaml
+- include: 14_sensu-client_conf-standard-OS-checks.yaml
+- include: 15_sensu-client_postinstall.yaml
