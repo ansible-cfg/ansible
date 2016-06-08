@@ -2,3 +2,6 @@
 ## Docker provided install script, will be error because of AUFS driver.... 
 - name: Install Docker Engine
   shell: curl -sSL https://get.docker.com/ | sh
+
+- name: Start Docker Engine (daemon) so it's API listens on port 2376 (TLS will be used) and locally through the Unix Socket. 
+  shell: docker daemon -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock
