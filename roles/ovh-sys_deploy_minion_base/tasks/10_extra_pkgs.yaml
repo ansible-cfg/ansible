@@ -3,7 +3,12 @@
     pkg: mcedit
     state: present    
 
-- name: Install lynx, the text-mode WWW Browser.
+- name: Install tree.
   apt: 
-    pkg: lynx
+    pkg: tree
+    state: present 
+
+- name: Install pstree.
+  apt: 
+    pkg: psmisc
     state: present 
