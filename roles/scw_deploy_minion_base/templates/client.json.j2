@@ -1,7 +1,7 @@
 {
    "client": {
       "name": "{{ sensu_client_hostname }}",
-      "address": "{{ minion_public_ip }}",
+      "address": "WAN_{{ minion_public_ip }} LAN_{{ sensu_client_lanip }}",
       "subscriptions": ["all", "{{ sensu_client_env }}", "scw.cloud.minsys.io"]
    }
 }

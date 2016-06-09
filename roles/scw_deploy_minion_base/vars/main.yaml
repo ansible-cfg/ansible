@@ -36,6 +36,7 @@ sensu_group: root
 
 #Custom client.json config
 sensu_client_fqdn: "{{ ansible_fqdn }}"
+sensu_client_lanip: "{{ ansible_eth0.ipv4.address }}"
 #Following are already defined in the /etc/hosts configuration
 #sensu_client_hostname: "{{ ansible_hostname }}"
 #sensu_client_env: "{{ prompted_env }}"
