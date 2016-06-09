@@ -1,0 +1,14 @@
+- name: Install Midnight Commander Text Editor, will also install mc .
+  apt: 
+    pkg: mcedit
+    state: present    
+
+- name: Install tree.
+  apt: 
+    pkg: tree
+    state: present 
+
+- name: Install pstree.
+  apt: 
+    pkg: psmisc
+    state: present 

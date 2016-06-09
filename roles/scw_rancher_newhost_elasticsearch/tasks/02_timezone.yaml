@@ -1,0 +1,22 @@
+---
+- name: Timezone | Check the current time zone. 
+  shell: cat /etc/timezone
+  register: current_tzone  
+
+- name: Timezone | Set timezone variables to Europe/Paris
+  copy: 
+    content: "{{ timezone.my_tzone }}"
+    dest: /etc/timezone
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  when: current_tzone.stdout != timezone.my_tzone
+
+- name: Timezone | Update Timezone
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+
+- name: Timezone | Restart rsyslog to sync with newly intalled timezone 
+  service: 
+    name: rsyslog 
+    state: restarted

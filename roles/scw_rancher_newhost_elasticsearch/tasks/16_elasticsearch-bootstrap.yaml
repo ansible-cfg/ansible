@@ -1,0 +1,32 @@
+---
+- name: Create the elasticsearch root directory /opt/elasticsearch
+  file:
+    path: /opt/elasticsearch
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,g=rwx,o=rwx"
+    state: directory
+
+- name: Create the elasticsearch root directory /opt/elasticsearch/conf
+  file:
+    path: /opt/elasticsearch/conf
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,g=rwx,o=rwx"
+    state: directory
+
+- name: Create the elasticsearch root directory /opt/elasticsearch/data
+  file:
+    path: /opt/elasticsearch/data
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,g=rwx,o=rwx"
+    state: directory
+
+- name: Create the elasticsearch root directory /opt/elasticsearch/log
+  file:
+    path: /opt/elasticsearch/log
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,g=rwx,o=rwx"
+    state: directory
