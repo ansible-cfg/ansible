@@ -1,0 +1,16 @@
+---
+- name: 'Deploy a rancher managed @ cloud.minsys.io compliant host - VPS, Dedicated - on Scaleway : Logstash Installation'
+  hosts: scw_newhost_base
+  vars_prompt: 
+    - name: "prompted_env"
+      prompt: "Please enter environnement for the new host. Choose one: -> lab,int,uat,prd"
+      private: no 
+    - name: "confirm"
+      prompt: "Continue ? : yes / no"
+      private: no
+  pre_tasks:     
+    - fail: 
+        msg: "No deployment this time... aborted by user"
+      when: confirm != 'yes'
+  roles:
+    - scw_rancher_newhost_logstash

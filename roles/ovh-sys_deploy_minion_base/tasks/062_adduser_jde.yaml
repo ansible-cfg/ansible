@@ -1,0 +1,34 @@
+---
+- name: Adduser oma | Create the oma group
+  group: 
+    name: oma 
+    state: present
+
+- name: Adduser oma | Initial admin user creation - oma.
+  user: 
+    name: oma   
+    shell: /bin/bash
+    password: "{{ 'azerty123' | password_hash('sha512') }}" 
+    update_password: on_create
+    createhome: yes 
+    home: /home/oma 
+    groups: oma,sudo,admins,sshusers
+    append: yes
+  register: oma
+
+- name: Adduser oma | Create .ssh/ directory in oma home directory  
+  file: 
+    path: /home/oma/.ssh 
+    state: directory
+    owner: oma
+    group: oma  
+    mode: "u=rw,g=rw,o=r"
+
+- name: Adduser oma | Adding the oma public key to authorized_keys files.
+  authorized_key: 
+    user: oma 
+    key: "{{ lookup('file', '/root/.ssh/oma.pub') }}"
+
+- name: Adduser oma | User oma will have to change password at first connection.
+  shell: chage -d 0 oma
+  when: oma.changed

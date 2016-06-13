@@ -6,8 +6,6 @@
 - include: 04_addgroups_initial.yaml
 - include: 05_adduser_lvi.yaml
 - include: 06_adduser_cso.yaml
-- include: 061_adduser_oma.yaml
-- include: 062_adduser_jde.yaml
 - include: 07_sshd_config.yaml
 - include: 08_fail2ban.yaml
 - include: 09_motd.yaml
@@ -17,5 +15,4 @@
 - include: 13_sensu-client_conf-rabbitmq.yaml
 - include: 14_sensu-client_conf-standard-OS-checks.yaml
 - include: 15_sensu-client_postinstall.yaml
-#- include: 16_docker_install.yaml
-#- include: 17_docker_run_rancher-agent.yaml
+- include: 16_logstash-bootstrap.yaml

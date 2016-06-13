@@ -1,0 +1,28 @@
+---
+- name: Create the logstash root directory /opt/logstash
+  file:
+    path: /opt/logstash
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,g=rwx,o=rwx"
+    state: directory
+
+- name: Create the logstash conf.d directory /opt/logstash/conf.d
+  file:
+    path: /opt/logstash/conf.d
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,g=rwx,o=rwx"
+    state: directory
+
+- name: Create the logstash ssl (Beats Stack) directory /opt/logstash/ssl
+  file:
+    path: /opt/logstash/ssl
+    owner: "root"
+    group: "root"
+    mode: "u=rwx,g=rwx,o=rwx"
+    state: directory
+
+     
+     
+                

@@ -7,7 +7,7 @@
     mode: "u=rwx,g=rwx,o=rwx"
     state: directory
 
-- name: Create the elasticsearch root directory /opt/elasticsearch/conf
+- name: Create the elasticsearch conf directory /opt/elasticsearch/conf
   file:
     path: /opt/elasticsearch/conf
     owner: "root"
@@ -15,7 +15,7 @@
     mode: "u=rwx,g=rwx,o=rwx"
     state: directory
 
-- name: Create the elasticsearch root directory /opt/elasticsearch/data
+- name: Create the elasticsearch data directory /opt/elasticsearch/data
   file:
     path: /opt/elasticsearch/data
     owner: "root"
@@ -23,10 +23,20 @@
     mode: "u=rwx,g=rwx,o=rwx"
     state: directory
 
-- name: Create the elasticsearch root directory /opt/elasticsearch/log
+- name: Create the elasticsearch logs directory /opt/elasticsearch/log
   file:
     path: /opt/elasticsearch/log
     owner: "root"
     group: "root"
     mode: "u=rwx,g=rwx,o=rwx"
     state: directory
+
+- name: Increase the limits on mmap counts
+  shell: sysctl -q -w vm.max_map_count=262144
+
+- name: Reduce the kernel’s tendency to swap. Should not lead to swapping under normal circumstances.
+  shell: sysctl -q -w vm.swappiness=1  
+
+     
+     
+                
