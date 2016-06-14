@@ -1,34 +1,34 @@
 ---
-- name: Adduser oma | Create the oma group
+- name: Adduser jde | Create the jde group
   group: 
-    name: oma 
+    name: jde 
     state: present
 
-- name: Adduser oma | Initial admin user creation - oma.
+- name: Adduser jde | Initial admin user creation - jde.
   user: 
-    name: oma   
+    name: jde   
     shell: /bin/bash
     password: "{{ 'azerty123' | password_hash('sha512') }}" 
     update_password: on_create
     createhome: yes 
-    home: /home/oma 
-    groups: oma,sudo,admins,sshusers
+    home: /home/jde 
+    groups: jde,sudo,admins,sshusers
     append: yes
-  register: oma
+  register: jde
 
-- name: Adduser oma | Create .ssh/ directory in oma home directory  
+- name: Adduser jde | Create .ssh/ directory in jde home directory  
   file: 
-    path: /home/oma/.ssh 
+    path: /home/jde/.ssh 
     state: directory
-    owner: oma
-    group: oma  
+    owner: jde
+    group: jde  
     mode: "u=rw,g=rw,o=r"
 
-- name: Adduser oma | Adding the oma public key to authorized_keys files.
+- name: Adduser jde | Adding the jde public key to authorized_keys files.
   authorized_key: 
-    user: oma 
-    key: "{{ lookup('file', '/root/.ssh/oma.pub') }}"
+    user: jde 
+    key: "{{ lookup('file', '/root/.ssh/jde.pub') }}"
 
-- name: Adduser oma | User oma will have to change password at first connection.
-  shell: chage -d 0 oma
-  when: oma.changed
+- name: Adduser jde | User jde will have to change password at first connection.
+  shell: chage -d 0 jde
+  when: jde.changed
