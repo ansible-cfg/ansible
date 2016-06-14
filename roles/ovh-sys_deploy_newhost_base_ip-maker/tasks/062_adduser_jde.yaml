@@ -24,10 +24,14 @@
     group: jde  
     mode: "u=rw,g=rw,o=r"
 
-- name: Adduser jde | Adding the jde public key to authorized_keys files.
-  authorized_key: 
-    user: jde 
-    key: "{{ lookup('file', '/root/.ssh/jde.pub') }}"
+#- name: Adduser jde | Adding the jde public key to authorized_keys files.
+#  authorized_key: 
+#    user: jde 
+#    key: "{{ lookup('file', '/root/.ssh/jde.pub') }}"
+
+- name: Adduser oma | User oma will have to change password at first connection.
+  shell: chage -d 0 oma
+  when: oma.changed
 
 - name: Adduser jde | User jde will have to change password at first connection.
   shell: chage -d 0 jde
