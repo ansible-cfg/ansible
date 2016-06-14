@@ -1,0 +1,8 @@
+---
+- name: motd configuration | Loading the minsys.io motd  
+  copy: 
+    src: 30-runabove
+    dest: /etc/update-motd.d/20-runabove
+    owner: root
+    group: root
+    mode: "u=rwx,g=rx,o=rx"

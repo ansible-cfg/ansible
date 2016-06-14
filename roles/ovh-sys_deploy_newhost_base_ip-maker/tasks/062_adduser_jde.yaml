@@ -1,0 +1,34 @@
+---
+- name: Adduser jde | Create the jde group
+  group: 
+    name: jde 
+    state: present
+
+- name: Adduser jde | Initial admin user creation - jde.
+  user: 
+    name: jde   
+    shell: /bin/bash
+    password: "{{ 'azerty123' | password_hash('sha512') }}" 
+    update_password: on_create
+    createhome: yes 
+    home: /home/jde 
+    groups: jde,sudo,admins,sshusers
+    append: yes
+  register: jde
+
+- name: Adduser jde | Create .ssh/ directory in jde home directory  
+  file: 
+    path: /home/jde/.ssh 
+    state: directory
+    owner: jde
+    group: jde  
+    mode: "u=rw,g=rw,o=r"
+
+- name: Adduser jde | Adding the jde public key to authorized_keys files.
+  authorized_key: 
+    user: jde 
+    key: "{{ lookup('file', '/root/.ssh/jde.pub') }}"
+
+- name: Adduser jde | User jde will have to change password at first connection.
+  shell: chage -d 0 jde
+  when: jde.changed

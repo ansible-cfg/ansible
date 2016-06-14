@@ -1,0 +1,44 @@
+---
+- name: Add the official Sensu repository's key.
+  apt_key: 
+    url: http://sensu.global.ssl.fastly.net/apt/pubkey.gpg
+    state: present
+
+- name: Add the official Sensu repository.
+  copy:
+    src: aptrepo_sensu-server.list
+    dest: /etc/apt/sources.list.d/
+    backup: yes
+  register: aptrepo
+
+- name: Refresh apt cache
+  apt: 
+    update_cache: yes
+  when: aptrepo.changed
+
+- name: Install Sensu, the monitoring framework.
+  apt: 
+    name: sensu 
+    state: present
+
+- name: Enable sensu-client to survive reboot.
+  service: 
+    name: sensu-{{ item }} 
+    enabled: yes
+  with_items:
+    - client
+
+- name: Install ruby. 
+  apt: 
+    name: ruby 
+    state: present   
+
+- name: Install ruby-dev.
+  apt: 
+    name: ruby-dev 
+    state: present 
+
+- name: Install build-essential.
+  apt: 
+    name: build-essential 
+    state: present
