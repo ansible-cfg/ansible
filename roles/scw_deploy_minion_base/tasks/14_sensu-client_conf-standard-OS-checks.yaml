@@ -20,12 +20,12 @@
     include_dependencies: yes      
     user_install: no
 
-- name: Install Standard Plugins - Disks.
-  gem: 
-    name: sensu-plugins-disk-checks 
-    state: latest 
-    include_dependencies: yes      
-    user_install: no
+#- name: Install Standard Plugins - Disks.
+#  gem: 
+#    name: sensu-plugins-disk-checks 
+#    state: latest 
+#    include_dependencies: yes      
+#    user_install: no
 
 - name: Install Standard Plugins - Load Average.
   gem: 
