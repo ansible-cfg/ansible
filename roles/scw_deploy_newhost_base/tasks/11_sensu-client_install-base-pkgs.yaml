@@ -1,4 +1,25 @@
 ---
+- name: Install build-essential.
+  apt: 
+    name: build-essential 
+    state: present
+
+- name: Add ruby stable repository from PPA and install its signing key, thanks @ https://www.brightbox.com/
+  apt_repository: 
+    repo: 'ppa:brightbox/ruby-ng'
+
+- name: Refresh apt cache with "apt-get install"
+  apt: 
+    update_cache: yes
+
+- name: Install Ruby 2.2 & the dev packages so you can build native extensions
+  apt: 
+    name: {{ item }}  
+    state: present
+  with_items:
+    - ruby2.2
+    - ruby2.2-dev
+
 - name: Add the official Sensu repository's key.
   apt_key: 
     url: http://sensu.global.ssl.fastly.net/apt/pubkey.gpg
@@ -11,10 +32,9 @@
     backup: yes
   register: aptrepo
 
-- name: Refresh apt cache
+- name: Refresh apt cache with "apt-get install"
   apt: 
     update_cache: yes
-  when: aptrepo.changed
 
 - name: Install Sensu, the monitoring framework.
   apt: 
@@ -28,17 +48,3 @@
   with_items:
     - client
 
-- name: Install ruby. 
-  apt: 
-    name: ruby 
-    state: present   
-
-- name: Install ruby-dev.
-  apt: 
-    name: ruby-dev 
-    state: present 
-
-- name: Install build-essential.
-  apt: 
-    name: build-essential 
-    state: present
