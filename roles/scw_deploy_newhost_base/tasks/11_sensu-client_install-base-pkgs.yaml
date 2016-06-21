@@ -18,7 +18,7 @@
     state: present
   with_items:
     - 2.2
-    - 2.2-devFile
+    - 2.2-dev
 
 - name: Add the official Sensu repository's key.
   apt_key: 
