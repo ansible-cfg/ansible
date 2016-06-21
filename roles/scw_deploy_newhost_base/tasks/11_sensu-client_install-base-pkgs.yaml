@@ -4,11 +4,11 @@
     name: build-essential 
     state: present
 
-- name: Add ruby stable repository from PPA and install its signing key, thanks @ https://www.brightbox.com/
+- name: Add ruby stable repository from PPA and install its signing key, thanks @ https://www.brightbox.com/docs/ruby/ubuntu/#Addingtherepository
   apt_repository: 
     repo: 'ppa:brightbox/ruby-ng'
 
-- name: Refresh apt cache with "apt-get install"
+- name: Refresh apt cache with "apt-get update"
   apt: 
     update_cache: yes
 
@@ -18,7 +18,7 @@
     state: present
   with_items:
     - 2.2
-    - 2.2-dev
+    - 2.2-devFile
 
 - name: Add the official Sensu repository's key.
   apt_key: 
@@ -32,7 +32,7 @@
     backup: yes
   register: aptrepo
 
-- name: Refresh apt cache with "apt-get install"
+- name: Refresh apt cache with "apt-get update"
   apt: 
     update_cache: yes
 
