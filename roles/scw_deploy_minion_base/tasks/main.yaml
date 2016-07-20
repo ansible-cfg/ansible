@@ -10,9 +10,9 @@
 - include: 08_fail2ban.yaml
 - include: 09_motd.yaml
 - include: 10_extra_pkgs.yaml
-- include: 11_sensu-client_install-base-pkgs.yaml
-- include: 12_sensu-client_conf-base.yaml
-- include: 13_sensu-client_conf-rabbitmq.yaml
-- include: 14_sensu-client_conf-standard-OS-checks.yaml
-- include: 15_sensu-client_postinstall.yaml
-- include: 16_docker_install.yaml
+#- include: 11_sensu-client_install-base-pkgs.yaml
+#- include: 12_sensu-client_conf-base.yaml
+#- include: 13_sensu-client_conf-rabbitmq.yaml
+#- include: 14_sensu-client_conf-standard-OS-checks.yaml
+#- include: 15_sensu-client_postinstall.yaml
+#- include: 16_docker_install.yaml
