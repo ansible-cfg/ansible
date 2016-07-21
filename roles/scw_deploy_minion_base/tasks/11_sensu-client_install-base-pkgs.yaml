@@ -28,17 +28,20 @@
   with_items:
     - client
 
-- name: Install ruby. 
+- name: add brightbox ruby repository.
+  apt_repository: repo='ppa:brightbox/ruby-ng'
+
+- name: Refresh apt cache
   apt: 
-    name: ruby 
+    update_cache: yes
+
+- name: Install ruby2.3 via ppa brightbox/ruby-ng repository. 
+  apt: 
+    name: ruby2.3 
     state: present   
 
-- name: Install ruby-dev.
+- name: Install ruby-dev2.3 via ppa brightbox/ruby-ng repository.
   apt: 
-    name: ruby-dev 
+    name: ruby2.3-dev 
     state: present 
 
-- name: Install build-essential.
-  apt: 
-    name: build-essential 
-    state: present

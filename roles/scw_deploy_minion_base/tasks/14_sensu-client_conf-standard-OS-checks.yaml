@@ -6,6 +6,20 @@
     include_dependencies: yes      
     user_install: no
 
+- name: Install Standard Plugins - Load Average.
+  gem: 
+    name: sensu-plugins-load-checks
+    state: latest 
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - IOs.
+  gem: 
+    name: ssensu-plugins-io-checks
+    state: latest 
+    include_dependencies: yes      
+    user_install: no
+
 - name: Install Standard Plugins - CPU.
   gem: 
     name: sensu-plugins-cpu-checks 
@@ -27,26 +41,26 @@
     include_dependencies: yes      
     user_install: no
 
-- name: Install Standard Plugins - Load Average.
+- name: Install Standard Plugins - Network.
   gem: 
-    name: sensu-plugins-load-checks
+    name: sensu-plugins-network-checks 
     state: latest 
     include_dependencies: yes      
     user_install: no
 
-#- name: Install Standard Plugins - Network.
-#  gem: 
-#    name: sensu-plugins-network-checks 
-#    state: latest 
-#    include_dependencies: yes      
-#    user_install: no
+- name: Install Standard Plugins - Process.
+  gem: 
+    name: sensu-plugins-process-checks
+    state: latest
+    include_dependencies: yes      
+    user_install: no
 
-#- name: Install Standard Plugins - Process.
-#  gem: 
-#    name: sensu-plugins-process-checks
-#    state: latest
-#    include_dependencies: yes      
-#    user_install: no
+- name: Install Standard Plugins - Filesystem.
+  gem: 
+    name: sensu-plugins-filesystem-checks
+    state: latest
+    include_dependencies: yes      
+    user_install: no
 
 #- name: Install Standard Plugins - Docker.
 #  gem: 
@@ -54,23 +68,3 @@
 #    state: latest
 #    include_dependencies: yes      
 #    user_install: no
-
-#- name: Copy the Standard System Checks in the appropriate directory.
-#  copy:
-#    src: /home/ansible/safebox/checks/standard-OS-checks/{{ item }}
-#    dest: /etc/sensu/conf.d/checks/standard-OS-checks/{{ item }}
-#    owner: "{{ sensu_user }}"
-#    group: "{{ sensu_group }}"
-#    mode: "u=rw,g=r,o=r"
-#    backup: yes
-#  with_items:
-#    - check-cpu-iowait.json
-#    - check-cpu-nice.json
-#    - check-cpu-softirq.json
-#    - check-cpu-steal.json
-#    - check-cpu-system.json
-#    - check-cpu-user.json
-#    - check-disk-usage.json
-#    - check-load.json
-#    - check-ram-percent.json
-#    - check-process-alive-sensu-client.json
