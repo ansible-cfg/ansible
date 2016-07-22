@@ -13,7 +13,6 @@
 - include: 11_sensu-client_install-base-pkgs.yaml
 - include: 12_sensu-client_conf-base.yaml
 - include: 13_sensu-client_conf-rabbitmq.yaml
-#- include: 14_sensu-client_conf-standard-OS-checks.yaml
-- include: 14-test.yaml
+- include: 14_sensu-client_conf-standard-OS-checks.yaml
 - include: 15_sensu-client_postinstall.yaml
 #- include: 16_docker_install.yaml

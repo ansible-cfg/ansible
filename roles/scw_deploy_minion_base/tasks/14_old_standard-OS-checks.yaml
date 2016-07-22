@@ -1,0 +1,70 @@
+---
+- name: Install sensu-plugin - a framework for writing Sensu plugins & handlers with Ruby.
+  gem: 
+    name: sensu-plugin  
+    state: latest
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - Load Average.
+  gem: 
+    name: sensu-plugins-load-checks
+    state: latest 
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - IOs.
+  gem: 
+    name: sensu-plugins-io-checks
+    state: latest 
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - CPU.
+  gem: 
+    name: sensu-plugins-cpu-checks 
+    state: latest 
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - RAM.
+  gem: 
+    name: sensu-plugins-memory-checks 
+    state: latest  
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - Disks.
+  gem: 
+    name: sensu-plugins-disk-checks 
+    state: latest 
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - Network.
+  gem: 
+    name: sensu-plugins-network-checks 
+    state: latest 
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - Process.
+  gem: 
+    name: sensu-plugins-process-checks
+    state: latest
+    include_dependencies: yes      
+    user_install: no
+
+- name: Install Standard Plugins - Filesystem.
+  gem: 
+    name: sensu-plugins-filesystem-checks
+    state: latest
+    include_dependencies: yes      
+    user_install: no
+
+#- name: Install Standard Plugins - Docker.
+#  gem: 
+#    name: sensu-plugins-docker
+#    state: latest
+#    include_dependencies: yes      
+#    user_install: no
