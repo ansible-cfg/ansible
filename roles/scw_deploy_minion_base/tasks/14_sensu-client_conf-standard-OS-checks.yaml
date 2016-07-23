@@ -29,3 +29,5 @@
 
 - name: Install Standard Plugins - Filesystem.
   shell: sensu-install -p filesystem-checks
+
+#sensu-install -p load-checks && sensu-install -p io-checks && sensu-install -p cpu-checks && sensu-install -p memory-checks && sensu-install -p network-checks && sensu-install -p process-checks && sensu-install -p filesystem-checks
